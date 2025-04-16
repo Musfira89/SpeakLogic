@@ -22,10 +22,34 @@ const sections = [
   },
   {
     number: 3,
-    heading: "Interactive Learning",
+    heading: "Increase Learning",
     description:
       "Includes problem and solution links for practical, hands-on understanding of logical thinking. It helps reinforce learning through engaging exercises tailored for all levels.",
     image: img3,
+  },
+  {
+    number: 4,
+    heading: "Explore Real World Scenarios",
+    description:
+      "Learn to apply communication techniques in everyday life with interactive examples that develop critical thinking and empathy.",
+    image: img1,
+  },
+];
+
+const appSections = [
+  {
+    number: 1,
+    heading: "Child Learning Journey",
+    description:
+      "Track your child's growth and progress over time. Get insights on their learning and behavioral trends.",
+    image: img1,
+  },
+  {
+    number: 2,
+    heading: "Interactive Assessments",
+    description:
+      "Interactive quizzes and assessments to gauge your child's development. Receive tailored suggestions for improvement.",
+    image: img2,
   },
 ];
 
@@ -73,9 +97,72 @@ const Features = () => {
 
       {/* Tab Content */}
       {activeTab === "Download App" ? (
-        <div className="text-center text-gray-500 font-medium text-md max-w-md mx-auto">
-          We’re working on something awesome! <br /> Stay tuned for the app
-          launch.
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {appSections.map((section, index) => (
+            <div
+              key={index}
+              className="relative bg-white rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-all flex flex-col md:flex-row items-start md:items-center gap-6 border border-[#e2e8f0]"
+            >
+              {/* App Image */}
+              <div className="relative flex-shrink-0 mx-auto md:mx-0 mb-4 md:mb-0">
+                <img
+                  src={section.image}
+                  alt="App"
+                  className="w-full max-w-[220px] h-auto object-contain rounded-lg shadow-md"
+                />
+                <span className="absolute top-2 left-2 bg-[#47be07] text-white text-xs px-3 py-1 rounded-full font-semibold shadow">
+                  #{section.number}
+                </span>
+              </div>
+
+              {/* Text Content */}
+              <div className="flex-1 w-full">
+                <h3 className="text-lg sm:text-lg font-bold text-[#1f2937] mb-3">
+                  {section.heading}
+                </h3>
+                <p className="text-[#4B5563] text-sm sm:text-base leading-relaxed mb-4">
+                  {expandedIndex === index
+                    ? section.description
+                    : section.description.slice(0, 100) + "... "}
+                  <button
+                    onClick={() => toggleShowMore(index)}
+                    className="text-[#47be07] underline font-medium text-sm"
+                  >
+                    {expandedIndex === index ? "Show Less" : "Show More"}
+                  </button>
+                </p>
+
+                {/* Action Buttons */}
+                <div className="flex flex-wrap gap-3 mt-4">
+                  <button className="px-6 py-2 rounded-lg border-2 border-[#47be07] text-[#47be07] hover:bg-[#47be07] hover:text-white transition-all font-semibold text-sm">
+                    View
+                  </button>
+                  <button
+                    onClick={() => openModal("download", index)}
+                    className="px-5 py-2 rounded-lg bg-[#47be07] text-white hover:bg-[#3aa506] transition-all font-semibold text-sm"
+                  >
+                    Download
+                  </button>
+                </div>
+              </div>
+
+              {/* Icon Buttons */}
+              <div className="flex gap-4 md:flex-col mt-4 md:mt-0 self-start md:self-auto">
+                <IconButton
+                  icon={<FaDownload />}
+                  onClick={() => openModal("download", index)}
+                />
+                <IconButton
+                  icon={<FaPrint />}
+                  onClick={() => openModal("print", index)}
+                />
+                <IconButton
+                  icon={<FaInfoCircle />}
+                  onClick={() => openModal("info", index)}
+                />
+              </div>
+            </div>
+          ))}
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
