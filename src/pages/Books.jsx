@@ -1,6 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { FaDownload, FaPrint, FaInfoCircle } from "react-icons/fa";
-import Modal from "./Modal";
 import img1 from "../assets/3D-1.jpg";
 import img2 from "../assets/3D-2.jpg";
 import img3 from "../assets/3D-3.jpg";
@@ -36,42 +35,11 @@ const sections = [
   },
 ];
 
-const appSections = [
-  {
-    number: 1,
-    heading: "Child Learning Journey",
-    description:
-      "Track your child's growth and progress over time. Get insights on their learning and behavioral trends.",
-    image: img1,
-  },
-  {
-    number: 2,
-    heading: "Interactive Assessments",
-    description:
-      "Interactive quizzes and assessments to gauge your child's development. Receive tailored suggestions for improvement.",
-    image: img2,
-  },
-];
-
-const Features = () => {
-  const [activeTab, setActiveTab] = useState("Download Books");
+const Books = () => {
   const [expandedIndex, setExpandedIndex] = useState(null);
-  const [modal, setModal] = useState({
-    open: false,
-    type: "",
-    sectionIndex: null,
-  });
 
   const toggleShowMore = (index) => {
     setExpandedIndex(index === expandedIndex ? null : index);
-  };
-
-  const openModal = (type, index) => {
-    setModal({ open: true, type, sectionIndex: index });
-  };
-
-  const closeModal = () => {
-    setModal({ open: false, type: "", sectionIndex: null });
   };
 
   const renderCard = (section, index) => (
@@ -79,7 +47,6 @@ const Features = () => {
       key={index}
       className="relative group flex md:flex-row flex-col overflow-hidden rounded-2xl shadow-xl border border-gray-300 bg-white transition-all duration-500 md:h-[260px]"
     >
-      {/* Left Image Section */}
       <div className="relative md:w-[40%] w-full cursor-pointer group/image z-10">
         <img
           src={section.image}
@@ -89,42 +56,24 @@ const Features = () => {
         <span className="absolute top-4 left-4 bg-[#47be07] text-white text-xs px-3 py-1 rounded-full font-semibold shadow z-20">
           #{section.number}
         </span>
-
-        {/* Green Hover Slide */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-0 left-[-100%] w-full h-full bg-[#47be07] opacity-20 group-hover/image:left-0 transition-all duration-700 ease-in-out" />
         </div>
-
-        {/* Icons */}
         <div className="absolute bottom-4 right-4 z-20 opacity-0 group-hover/image:opacity-100 transition-opacity duration-500 flex gap-2">
-          <IconButton
-            icon={<FaDownload />}
-            onClick={() => openModal("download", index)}
-          />
-          <IconButton
-            icon={<FaPrint />}
-            onClick={() => openModal("print", index)}
-          />
-          <IconButton
-            icon={<FaInfoCircle />}
-            onClick={() => openModal("info", index)}
-          />
+          <IconButton icon={<FaDownload />} />
+          <IconButton icon={<FaPrint />} />
+          <IconButton icon={<FaInfoCircle />} />
         </div>
       </div>
 
-      {/* Right Text Section */}
-      <div className="md:w-[60%] w-full px-6 py-5 flex flex-col justify-center z-10 transition-all duration-500 group-hover/image:backdrop-blur-sm">
-        {/* Heading */}
+      <div className="md:w-[60%] w-full px-6 py-5 flex flex-col justify-center z-10">
         <h3 className="text-base sm:text-lg md:text-xl lg:text-[1.2rem] xl:text-[1.3rem] font-sora font-bold text-[#1f2937] mb-3 leading-snug tracking-normal">
           {section.heading}
         </h3>
-
-        {/* Paragraph */}
         <p className="text-[0.7rem] sm:text-sm md:text-base lg:text-[0.80rem] xl:text-[0.9rem] font-sora text-[#4B5563] leading-relaxed mb-2 tracking-normal">
           {expandedIndex === index
             ? section.description
             : section.description.slice(0, 100) + "... "}
-          {/* Show More button inline when truncated */}
           {expandedIndex !== index && (
             <button
               onClick={(e) => {
@@ -137,8 +86,6 @@ const Features = () => {
             </button>
           )}
         </p>
-
-        {/* Show Less button below para when expanded */}
         {expandedIndex === index && (
           <button
             onClick={(e) => {
@@ -155,46 +102,51 @@ const Features = () => {
   );
 
   return (
-    <div className="px-4 sm:px-6 md:px-12 xl:px-24 py-16 bg-[#F9FAFB] min-h-screen">
-      {/* Tabs */}
-      <div className="flex flex-col sm:flex-row justify-center mb-12">
-        <div className="flex gap-8 bg-white shadow-lg rounded-lg px-8 py-4 w-full sm:w-auto">
-          {["Download Books", "Download App"].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`w-full sm:w-[200px] lg:w-[240px] text-center px-6 py-3 font-semibold rounded-md transition-all text-xs sm:text-sm md:text-md ${
-                activeTab === tab
-                  ? "bg-[#47be07] text-white shadow-md"
-                  : "text-[#47be07] hover:bg-[#ecfce1]"
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
+    <div className="min-h-screen bg-[#F9FAFB]">
+      {/* Header Section */}
+      <div className="relative bg-gradient-to-r from-[#47be07] via-[#3e9e0a] to-[#47be07] py-28 px-4 sm:px-6 md:px-16 text-white text-center overflow-hidden">
+
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-10 z-0" />
+
+        {/* Main Content */}
+        <div className="relative z-10">
+          <h1 className="text-5xl sm:text-6xl font-extrabold mb-6 tracking-tight">
+            BOOKS
+          </h1>
+
+          {/* Breadcrumb */}
+          <nav className="text-sm sm:text-base font-medium text-white flex justify-center space-x-2">
+            <span className="hover:underline cursor-pointer">Home</span>
+            <span>&gt;</span>
+            <span className="text-gray-100">Books</span>
+          </nav>
+        </div>
+
+        {/* Curved bottom */}
+        <div className="absolute bottom-0 left-0 w-full h-16 bg-[#F9FAFB] rounded-t-3xl" />
+      </div>
+
+      {/* Books Grid */}
+      <div className="px-4 sm:px-6 md:px-12 xl:px-24 py-16">
+        {/* Enhanced Heading */}
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1f2937] mb-22 text-center relative ">
+          Available Books
+          {/* Green line below the heading */}
+          <div className="absolute top-10 left-1/2 w-16 h-1 bg-[#47be07] rounded-full mx-auto mt-2 mb-4 transform -translate-x-1/2" />
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {sections.map((section, index) => renderCard(section, index))}
         </div>
       </div>
-
-      {/* Cards Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {(activeTab === "Download App" ? appSections : sections).map(
-          (section, index) => renderCard(section, index)
-        )}
-      </div>
-
-      {/* Modal */}
-      <Modal modal={modal} closeModal={closeModal} />
     </div>
   );
 };
 
-const IconButton = ({ icon, onClick }) => (
-  <button
-    onClick={onClick}
-    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#47be07] text-white flex items-center justify-center hover:bg-[#3aa506] transition-all shadow-md"
-  >
+const IconButton = ({ icon }) => (
+  <button className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#47be07] text-white flex items-center justify-center hover:bg-[#3aa506] transition-all shadow-md">
     {icon}
   </button>
 );
 
-export default Features;
+export default Books;

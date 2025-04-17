@@ -45,7 +45,7 @@ const LearningSection = () => {
               <FaLaptop size={22} />
             </div>
             <div>
-              <p className="font-semibold text-xl text-[#41aa09]">Free Softwares</p>
+              <p className="font-semibold text-xl text-[#41aa09]">Free Software</p>
               <p className="text-base font-medium text-gray-600">Learning & Application</p>
             </div>
           </div>

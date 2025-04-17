@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaSearch, FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
 import logo from "../../public/Artboard 1.png";
+import { Link } from "react-router-dom"; // Import Link for routing
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -50,27 +51,27 @@ const Navbar = () => {
 
       {/* Desktop Menu */}
       <div className="hidden md:flex space-x-6 text-[15px] font-medium text-gray-700">
-        <a href="#" className="text-[#41aa09] hover:text-green-700 transition">
+        <Link to="/" className="text-[#41aa09] hover:text-green-700 transition">
           Home
-        </a>
-        <a href="#" className="hover:text-[#41aa09] transition">
+        </Link>
+        <Link to="/problem" className="hover:text-[#41aa09] transition">
           Problem
-        </a>
-        <a href="#" className="hover:text-[#41aa09] transition">
+        </Link>
+        <Link to="/solution" className="hover:text-[#41aa09] transition">
           Solution
-        </a>
-        <a href="#" className="hover:text-[#41aa09] transition">
+        </Link>
+        <Link to="/books" className="hover:text-[#41aa09] transition">
           Books
-        </a>
-        <a href="#" className="hover:text-[#41aa09] transition">
+        </Link>
+        <Link to="/apps" className="hover:text-[#41aa09] transition">
           Apps
-        </a>
-        <a href="#" className="hover:text-[#41aa09] transition">
+        </Link>
+        <Link to="/softwares" className="hover:text-[#41aa09] transition">
           Softwares
-        </a>
-        <a href="#" className="hover:text-[#41aa09] transition">
+        </Link>
+        <Link to="/store" className="hover:text-[#41aa09] transition">
           Store
-        </a>
+        </Link>
       </div>
 
       {/* Search Bar */}
@@ -128,15 +129,15 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="absolute top-[80px] left-4 right-4 bg-white shadow-lg rounded-2xl py-5 px-6 flex flex-col space-y-4 md:hidden z-40">
-          <a href="#" className="text-[#41aa09] font-medium">
+          <Link to="/" className="text-[#41aa09] font-medium">
             Home
-          </a>
-          <a href="#">Problem</a>
-          <a href="#">Solution</a>
-          <a href="#">Books</a>
-          <a href="#">Apps</a>
-          <a href="#">Softwares</a>
-          <a href="#">Store</a>
+          </Link>
+          <Link to="/problem">Problem</Link>
+          <Link to="/solution">Solution</Link>
+          <Link to="/books">Books</Link>
+          <Link to="/apps">Apps</Link>
+          <Link to="/softwares">Softwares</Link>
+          <Link to="/store">Store</Link>
 
           {/* Mobile Search */}
           <div className="flex items-center border border-gray-300 rounded-md pl-4 pr-2 py-2 space-x-2 relative bg-white shadow-sm">

@@ -7,8 +7,14 @@ const config = {
     theme: {
       extend: {
         fontFamily: {
-          sora: ["Sora", "sans-serif"],
+          sora: ['Sora', 'sans-serif'],
+          montserrat: ['Montserrat', 'sans-serif'],
+          poppins: ['Poppins', 'sans-serif'],
+          opensans: ['"Open Sans"', 'sans-serif'],
+          inter: ['Inter', 'sans-serif'],
+          plusjakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
         },
+        
         animation: {
             'bounce-slow': 'bounce 3s infinite ease-in-out',
           },
