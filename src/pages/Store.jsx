@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiSearch } from "react-icons/fi"; // Importing search icon
 import image from "../assets/download.png"; // Import the image
-
+import Footer from "../components/Footer"
 const Store = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -32,6 +32,7 @@ const Store = () => {
   );
 
   return (
+    <>
     <div className="min-h-screen from-[#47be07] via-[#3e9e0a] to-[#47be07] relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-[#c9f7b8] via-transparent to-[#e9ffe0] opacity-40 pointer-events-none z-0" />
 
@@ -111,6 +112,8 @@ const Store = () => {
         )}
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import solution from "../assets/solution-banner.jpg";
 import solution1 from "../assets/solution-banner-1.jpg";
+import Footer from "../components/Footer"
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -11,6 +12,7 @@ const fadeInUp = {
 
 const Solutions = () => {
   return (
+    <>
     <div className="bg-[#f3f4f6] text-gray-800 font-sans">
       {/* Header Section */}
       <section
@@ -143,6 +145,8 @@ const Solutions = () => {
         </Link>
       </section>
     </div>
+      <Footer/>
+      </>
   );
 };
 

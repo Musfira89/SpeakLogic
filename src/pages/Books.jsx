@@ -8,6 +8,7 @@ import {
 import { Link } from "react-router-dom";
 import { sections } from "../data/book";
 import Modal from "../components/Modal";
+import Footer from "../components/Footer"
 
 const Books = () => {
   const [expandedIndex, setExpandedIndex] = useState(null);
@@ -18,7 +19,6 @@ const Books = () => {
     sectionIndex: null,
   });
 
-  // ✅ Fixed condition to match "All Categories"
   const filteredSections =
     activeTab === "All Categories"
       ? sections
@@ -113,6 +113,7 @@ const Books = () => {
   );
 
   return (
+    <>
     <div className="min-h-screen from-[#47be07] via-[#3e9e0a] to-[#47be07] relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-[#c9f7b8] via-transparent to-[#e9ffe0] opacity-40 pointer-events-none z-0" />
 
@@ -172,6 +173,9 @@ const Books = () => {
 
       <Modal modal={modal} closeModal={closeModal} />
     </div>
+    <Footer/>
+
+    </>
   );
 };
 
