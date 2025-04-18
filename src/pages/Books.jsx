@@ -1,45 +1,39 @@
 import React, { useState } from "react";
-import { FaDownload, FaPrint, FaInfoCircle } from "react-icons/fa";
-import img1 from "../assets/3D-1.jpg";
-import img2 from "../assets/3D-2.jpg";
-import img3 from "../assets/3D-3.jpg";
-
-const sections = [
-  {
-    number: 1,
-    heading: "Start Learning Better Communication",
-    description:
-      "Promotes better communication by incorporating logic into everyday exchanges. This helps children become more expressive and responsive in their early years of development, encouraging open-minded dialogue and mutual respect.",
-    image: img1,
-  },
-  {
-    number: 2,
-    heading: "Easy Access & Navigation",
-    description:
-      "Application Modeling Tutorial Communication Domain with Practical Examples Vol. I. It simplifies how you navigate complex topics using interactive modules and structured logic.",
-    image: img2,
-  },
-  {
-    number: 3,
-    heading: "Increase Learning",
-    description:
-      "Includes problem and solution links for practical, hands-on understanding of logical thinking. It helps reinforce learning through engaging exercises tailored for all levels.",
-    image: img3,
-  },
-  {
-    number: 4,
-    heading: "Explore Real World Scenarios",
-    description:
-      "Learn to apply communication techniques in everyday life with interactive examples that develop critical thinking and empathy.",
-    image: img1,
-  },
-];
+import {
+  FaDownload,
+  FaPrint,
+  FaInfoCircle,
+  FaChevronDown,
+} from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { sections } from "../data/book";
+import Modal from "../components/Modal";
 
 const Books = () => {
   const [expandedIndex, setExpandedIndex] = useState(null);
+  const [activeTab, setActiveTab] = useState("All Categories"); // default tab
+  const [modal, setModal] = useState({
+    open: false,
+    type: "",
+    sectionIndex: null,
+  });
+
+  // ✅ Fixed condition to match "All Categories"
+  const filteredSections =
+    activeTab === "All Categories"
+      ? sections
+      : sections.filter((s) => s.category === activeTab);
 
   const toggleShowMore = (index) => {
     setExpandedIndex(index === expandedIndex ? null : index);
+  };
+
+  const openModal = (type, index) => {
+    setModal({ open: true, type, sectionIndex: index });
+  };
+
+  const closeModal = () => {
+    setModal({ open: false, type: "", sectionIndex: null });
   };
 
   const renderCard = (section, index) => (
@@ -47,6 +41,7 @@ const Books = () => {
       key={index}
       className="relative group flex md:flex-row flex-col overflow-hidden rounded-2xl shadow-xl border border-gray-300 bg-white transition-all duration-500 md:h-[260px]"
     >
+      {/* Image & Overlay */}
       <div className="relative md:w-[40%] w-full cursor-pointer group/image z-10">
         <img
           src={section.image}
@@ -59,18 +54,34 @@ const Books = () => {
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-0 left-[-100%] w-full h-full bg-[#47be07] opacity-20 group-hover/image:left-0 transition-all duration-700 ease-in-out" />
         </div>
+
+        {/* Centered Icons */}
         <div className="absolute bottom-4 right-4 z-20 opacity-0 group-hover/image:opacity-100 transition-opacity duration-500 flex gap-2">
-          <IconButton icon={<FaDownload />} />
-          <IconButton icon={<FaPrint />} />
-          <IconButton icon={<FaInfoCircle />} />
+          <IconButton
+            icon={<FaDownload />}
+            onClick={() => openModal("download", index)}
+          />
+          <IconButton
+            icon={<FaPrint />}
+            onClick={() => openModal("print", index)}
+          />
+          <IconButton
+            icon={<FaInfoCircle />}
+            onClick={() => openModal("info", index)}
+          />
+          <IconButton
+            icon={<FaChevronDown />}
+            onClick={() => openModal("type", index)}
+          />
         </div>
       </div>
 
+      {/* Text Content */}
       <div className="md:w-[60%] w-full px-6 py-5 flex flex-col justify-center z-10">
-        <h3 className="text-base sm:text-lg md:text-xl lg:text-[1.2rem] xl:text-[1.3rem] font-sora font-bold text-[#1f2937] mb-3 leading-snug tracking-normal">
+        <h3 className="text-xl font-sora font-bold text-[#1f2937] mb-3">
           {section.heading}
         </h3>
-        <p className="text-[0.7rem] sm:text-sm md:text-base lg:text-[0.80rem] xl:text-[0.9rem] font-sora text-[#4B5563] leading-relaxed mb-2 tracking-normal">
+        <p className="text-sm font-sora text-[#4B5563] leading-relaxed mb-2">
           {expandedIndex === index
             ? section.description
             : section.description.slice(0, 100) + "... "}
@@ -80,7 +91,7 @@ const Books = () => {
                 e.stopPropagation();
                 toggleShowMore(index);
               }}
-              className="text-[#47be07] underline font-sora font-medium text-xs sm:text-sm lg:text-xs ml-1"
+              className="text-[#47be07] underline font-medium text-xs ml-1"
             >
               Show More
             </button>
@@ -92,7 +103,7 @@ const Books = () => {
               e.stopPropagation();
               toggleShowMore(index);
             }}
-            className="text-[#47be07] underline font-sora font-medium text-xs sm:text-sm lg:text-xs self-start mt-1"
+            className="text-[#47be07] underline font-medium text-xs self-start mt-1"
           >
             Show Less
           </button>
@@ -102,49 +113,73 @@ const Books = () => {
   );
 
   return (
-    <div className="min-h-screen bg-[#F9FAFB]">
+    <div className="min-h-screen from-[#47be07] via-[#3e9e0a] to-[#47be07] relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-[#c9f7b8] via-transparent to-[#e9ffe0] opacity-40 pointer-events-none z-0" />
+
       {/* Header Section */}
-      <div className="relative bg-gradient-to-r from-[#47be07] via-[#3e9e0a] to-[#47be07] py-28 px-4 sm:px-6 md:px-16 text-white text-center overflow-hidden">
-
+      <div className="relative bg-gradient-to-r from-[#47be07] via-[#3e9e0a] to-[#47be07] py-28 px-4 sm:px-6 md:px-16 text-white text-center overflow-hidden z-10">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-10 z-0" />
-
-        {/* Main Content */}
         <div className="relative z-10">
           <h1 className="text-5xl sm:text-6xl font-extrabold mb-6 tracking-tight">
             BOOKS
           </h1>
-
-          {/* Breadcrumb */}
           <nav className="text-sm sm:text-base font-medium text-white flex justify-center space-x-2">
-            <span className="hover:underline cursor-pointer">Home</span>
+            <Link to="/" className="hover:underline cursor-pointer">
+              Home
+            </Link>
             <span>&gt;</span>
             <span className="text-gray-100">Books</span>
           </nav>
         </div>
-
-        {/* Curved bottom */}
-        <div className="absolute bottom-0 left-0 w-full h-16 bg-[#F9FAFB] rounded-t-3xl" />
+        <div className="absolute bottom-0 left-0 w-full h-16 bg-[#f9fbf9] rounded-t-3xl" />
       </div>
 
-      {/* Books Grid */}
-      <div className="px-4 sm:px-6 md:px-12 xl:px-24 py-16">
-        {/* Enhanced Heading */}
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1f2937] mb-22 text-center relative ">
+      {/* Main Content */}
+      <div className="relative z-10 px-4 sm:px-6 md:px-12 xl:px-24 py-16">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1f2937] mb-12 text-center relative">
           Available Books
-          {/* Green line below the heading */}
           <div className="absolute top-10 left-1/2 w-16 h-1 bg-[#47be07] rounded-full mx-auto mt-2 mb-4 transform -translate-x-1/2" />
         </h2>
 
+        {/* Tabs */}
+        <div className="flex justify-center mb-14 px-4">
+          <div className="flex flex-wrap gap-8 bg-white rounded-md px-4 py-4 shadow-lg w-full max-w-xl justify-center">
+            {["All Categories", "Math", "Non Math"].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`relative px-5 py-2.5 text-sm font-semibold rounded-md transition-all duration-300 focus:outline-none 
+                  ${
+                    activeTab === tab
+                      ? "bg-gradient-to-r from-black to-gray-800 text-white shadow-lg scale-105"
+                      : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+                  }`}
+              >
+                {tab} Books
+                {activeTab === tab && (
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-black rounded-full mt-1"></span>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Book Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {sections.map((section, index) => renderCard(section, index))}
+          {filteredSections.map((section, index) => renderCard(section, index))}
         </div>
       </div>
+
+      <Modal modal={modal} closeModal={closeModal} />
     </div>
   );
 };
 
-const IconButton = ({ icon }) => (
-  <button className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#47be07] text-white flex items-center justify-center hover:bg-[#3aa506] transition-all shadow-md">
+const IconButton = ({ icon, onClick }) => (
+  <button
+    onClick={onClick}
+    className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#47be07] text-white flex items-center justify-center hover:bg-[#3aa506] transition-all shadow-md"
+  >
     {icon}
   </button>
 );

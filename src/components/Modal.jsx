@@ -9,6 +9,7 @@ const Modal = ({ modal, closeModal }) => {
 
     const downloadTypes = ["EPUB", "PDF"];
     const printTypes = ["Paperback", "Hardcover"];
+    const typeOptions = ["eBook", "Audiobook"];
 
     if (!modal.open) return null;
 
@@ -20,6 +21,8 @@ const Modal = ({ modal, closeModal }) => {
               ? "FORMAT"
               : modal.type === "print"
               ? "PRINT TYPE"
+              : modal.type === "type"
+              ? "SELECT TYPE"
               : "BOOK INFO"}
           </h2>
 
@@ -55,6 +58,18 @@ const Modal = ({ modal, closeModal }) => {
           {modal.type === "print" && (
             <div className="flex flex-col gap-4 text-center text-gray-800 text-base font-medium">
               {printTypes.map((type) => (
+                <button key={type} className="hover:text-[#47be07] transition">
+                  {type}
+                </button>
+              ))}
+              <div className="border-t border-gray-300 w-[60%] mx-auto" />
+            </div>
+          )}
+
+          {/* Type Options */}
+          {modal.type === "type" && (
+            <div className="flex flex-col gap-4 text-center text-gray-800 text-base font-medium">
+              {typeOptions.map((type) => (
                 <button key={type} className="hover:text-[#47be07] transition">
                   {type}
                 </button>

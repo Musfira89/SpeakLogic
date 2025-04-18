@@ -61,7 +61,7 @@ const HeroSection = () => {
           animate="visible"
           variants={slideInLeft}
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-600 leading-tight mb-6">
+          <h1 className="text-3xl sm:text-5xl md:text-5xl  font-bold text-gray-600 leading-tight mb-6">
             We Promote Better <br />
             <span className="text-[#3d960d]">Communication</span>
           </h1>

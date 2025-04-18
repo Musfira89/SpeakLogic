@@ -1,57 +1,12 @@
 import { useState } from "react";
-import { FaDownload, FaPrint, FaInfoCircle } from "react-icons/fa";
+import {
+  FaDownload,
+  FaPrint,
+  FaInfoCircle,
+  FaChevronDown,
+} from "react-icons/fa";
 import Modal from "./Modal";
-import img1 from "../assets/3D-1.jpg";
-import img2 from "../assets/3D-2.jpg";
-import img3 from "../assets/3D-3.jpg";
-
-const sections = [
-  {
-    number: 1,
-    heading: "Start Learning Better Communication",
-    description:
-      "Promotes better communication by incorporating logic into everyday exchanges. This helps children become more expressive and responsive in their early years of development, encouraging open-minded dialogue and mutual respect.",
-    image: img1,
-  },
-  {
-    number: 2,
-    heading: "Easy Access & Navigation",
-    description:
-      "Application Modeling Tutorial Communication Domain with Practical Examples Vol. I. It simplifies how you navigate complex topics using interactive modules and structured logic.",
-    image: img2,
-  },
-  {
-    number: 3,
-    heading: "Increase Learning",
-    description:
-      "Includes problem and solution links for practical, hands-on understanding of logical thinking. It helps reinforce learning through engaging exercises tailored for all levels.",
-    image: img3,
-  },
-  {
-    number: 4,
-    heading: "Explore Real World Scenarios",
-    description:
-      "Learn to apply communication techniques in everyday life with interactive examples that develop critical thinking and empathy.",
-    image: img1,
-  },
-];
-
-const appSections = [
-  {
-    number: 1,
-    heading: "Child Learning Journey",
-    description:
-      "Track your child's growth and progress over time. Get insights on their learning and behavioral trends.",
-    image: img1,
-  },
-  {
-    number: 2,
-    heading: "Interactive Assessments",
-    description:
-      "Interactive quizzes and assessments to gauge your child's development. Receive tailored suggestions for improvement.",
-    image: img2,
-  },
-];
+import { sections, appSections } from "../data/book";
 
 const Features = () => {
   const [activeTab, setActiveTab] = useState("Download Books");
@@ -79,7 +34,6 @@ const Features = () => {
       key={index}
       className="relative group flex md:flex-row flex-col overflow-hidden rounded-2xl shadow-xl border border-gray-300 bg-white transition-all duration-500 md:h-[260px]"
     >
-      {/* Left Image Section */}
       <div className="relative md:w-[40%] w-full cursor-pointer group/image z-10">
         <img
           src={section.image}
@@ -90,12 +44,10 @@ const Features = () => {
           #{section.number}
         </span>
 
-        {/* Green Hover Slide */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-0 left-[-100%] w-full h-full bg-[#47be07] opacity-20 group-hover/image:left-0 transition-all duration-700 ease-in-out" />
         </div>
-
-        {/* Icons */}
+        {/* Centered Icons */}
         <div className="absolute bottom-4 right-4 z-20 opacity-0 group-hover/image:opacity-100 transition-opacity duration-500 flex gap-2">
           <IconButton
             icon={<FaDownload />}
@@ -109,22 +61,22 @@ const Features = () => {
             icon={<FaInfoCircle />}
             onClick={() => openModal("info", index)}
           />
+          <IconButton
+            icon={<FaChevronDown />}
+            onClick={() => openModal("type", index)}
+          />
         </div>
       </div>
 
-      {/* Right Text Section */}
       <div className="md:w-[60%] w-full px-6 py-5 flex flex-col justify-center z-10 transition-all duration-500 group-hover/image:backdrop-blur-sm">
-        {/* Heading */}
         <h3 className="text-base sm:text-lg md:text-xl lg:text-[1.2rem] xl:text-[1.3rem] font-sora font-bold text-[#1f2937] mb-3 leading-snug tracking-normal">
           {section.heading}
         </h3>
 
-        {/* Paragraph */}
         <p className="text-[0.7rem] sm:text-sm md:text-base lg:text-[0.80rem] xl:text-[0.9rem] font-sora text-[#4B5563] leading-relaxed mb-2 tracking-normal">
           {expandedIndex === index
             ? section.description
             : section.description.slice(0, 100) + "... "}
-          {/* Show More button inline when truncated */}
           {expandedIndex !== index && (
             <button
               onClick={(e) => {
@@ -138,7 +90,6 @@ const Features = () => {
           )}
         </p>
 
-        {/* Show Less button below para when expanded */}
         {expandedIndex === index && (
           <button
             onClick={(e) => {
@@ -154,9 +105,11 @@ const Features = () => {
     </div>
   );
 
+  // Filter sections to show only the first 4 books
+  const limitedSections = sections.slice(0, 4);
+
   return (
     <div className="px-4 sm:px-6 md:px-12 xl:px-24 py-16 bg-[#F9FAFB] min-h-screen">
-      {/* Tabs */}
       <div className="flex flex-col sm:flex-row justify-center mb-12">
         <div className="flex gap-8 bg-white shadow-lg rounded-lg px-8 py-4 w-full sm:w-auto">
           {["Download Books", "Download App"].map((tab) => (
@@ -175,14 +128,12 @@ const Features = () => {
         </div>
       </div>
 
-      {/* Cards Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {(activeTab === "Download App" ? appSections : sections).map(
+        {(activeTab === "Download App" ? appSections : limitedSections).map(
           (section, index) => renderCard(section, index)
         )}
       </div>
 
-      {/* Modal */}
       <Modal modal={modal} closeModal={closeModal} />
     </div>
   );
@@ -190,11 +141,11 @@ const Features = () => {
 
 const IconButton = ({ icon, onClick }) => (
   <button
-    onClick={onClick}
-    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#47be07] text-white flex items-center justify-center hover:bg-[#3aa506] transition-all shadow-md"
-  >
-    {icon}
-  </button>
+  onClick={onClick}
+  className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#47be07] text-white flex items-center justify-center hover:bg-[#3aa506] transition-all shadow-md"
+>
+  {icon}
+</button>
 );
 
 export default Features;
