@@ -110,43 +110,49 @@ const SolutionSection = () => {
   });
 
   return (
-    <section className="font-sora max-w-7xl mx-auto px-4 py-12 mb-24 mt-28">
+    <section className="font-sora w-full max-w-[1280px] mx-auto px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 py-12 sm:py-16 md:py-20 xl:py-24 mb-24 mt-28">
+      {/* Section Heading */}
       <div className="text-center mb-10">
-        <h2 className="text-2xl md:text-3xl font-semibold text-gray-800">
-          Our Solution Process & Learning principles
+        <h2 className="text-xl sm:text-2xl md:text-3xl xl:text-[26px] font-semibold text-gray-800 leading-tight">
+          Our Solution Process & Learning Principles
         </h2>
         <div className="w-12 h-1 bg-[#41aa0980] mx-auto mt-3 mb-2 rounded" />
-        <p className="text-gray-600 max-w-xl mx-auto text-sm md:text-base">
+        <p className="text-gray-600 text-sm sm:text-base md:text-[15px] max-w-2xl mx-auto leading-relaxed">
           A step-by-step approach to identifying and correcting communication
           errors by understanding and applying core communication principles.
         </p>
       </div>
 
-      <div className="flex flex-col lg:flex-row items-start justify-between gap-4 lg:gap-2 mt-14">
+      {/* Main Content: Left - Center Image - Right */}
+      <div className="flex flex-col lg:flex-row items-start justify-between mt-14">
         {/* Left Points */}
-        <div className="space-y-8 w-full max-w-sm mx-auto">
+        <div className="space-y-8 w-full max-w-md mx-auto lg:mx-0">
           {points.map((item, idx) => (
             <AnimatedItem key={idx} index={idx}>
               <div className="flex items-start flex-row-reverse justify-end space-x-reverse space-x-4">
-                <div className="bg-[#eaf7dc] p-5 rounded-full">{item.icon}</div>
+                <div className="bg-[#eaf7dc] p-4 md:p-3 md:text-[2px] rounded-md text-[2px]">
+                  {item.icon}
+                </div>
                 <div className="text-left">
-                  <h4 className="text-lg font-semibold text-gray-800">
+                  <h4 className="text-base sm:text-lg font-semibold text-gray-800">
                     {item.title}
                   </h4>
-                  <p className="text-base text-gray-600">{item.desc}</p>
+                  <p className="text-xs text-gray-600 leading-snug">
+                    {item.desc}
+                  </p>
                 </div>
               </div>
             </AnimatedItem>
           ))}
         </div>
 
-        {/* Animated Center Image */}
-        <div className="w-full flex justify-center">
+        {/* Center Image */}
+        <div className="w-full flex justify-center my-8 lg:my-0">
           <motion.img
             ref={imgRef}
             src={phoneImage}
             alt="Phone Preview"
-            className="w-full max-w-[260px] md:max-w-[300px] h-auto"
+            className="w-full max-w-[200px] sm:max-w-[220px] md:max-w-[280px] lg:max-w-[200px] xl:max-w-[210px] h-auto"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={imgInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -154,16 +160,20 @@ const SolutionSection = () => {
         </div>
 
         {/* Right Points */}
-        <div className="space-y-8 w-full max-w-sm mx-auto">
+        <div className="space-y-8 w-full max-w-md mx-auto lg:mx-0">
           {pointsRight.map((item, idx) => (
             <AnimatedItem key={idx} index={idx}>
               <div className="flex items-start space-x-4">
-                <div className="bg-[#eaf7dc] p-5 rounded-full">{item.icon}</div>
+                <div className="bg-[#eaf7dc] p-3 md:p-3 text-[1px]  rounded-md">
+                  {item.icon}
+                </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-gray-800">
+                  <h4 className="text-base sm:text-lg font-semibold text-gray-800">
                     {item.title}
                   </h4>
-                  <p className="text-base text-gray-600">{item.desc}</p>
+                  <p className="text-xs text-gray-600 leading-snug">
+                    {item.desc}
+                  </p>
                 </div>
               </div>
             </AnimatedItem>
