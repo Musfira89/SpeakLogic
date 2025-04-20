@@ -77,9 +77,7 @@ const Forum = () => {
             },
             {
               key: "log",
-              icon: (
-                <FiBookOpen className="text-[#47be07] text-2xl mt-1" />
-              ),
+              icon: <FiBookOpen className="text-[#47be07] text-2xl mt-1" />,
               title: "Miscommunication Log",
               text: "Document and reflect on real-world communication errors and improve together.",
             },
@@ -116,21 +114,22 @@ const Forum = () => {
         {/* Forum Section */}
         {activeSection === "forum" && (
           <motion.section
-            className="rounded-3xl bg-white p-6 sm:p-10 shadow-xl"
+            className="rounded-3xl bg-white p-4 sm:p-6 md:p-10 shadow-xl"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <div className="flex justify-between items-center mb-8">
-              <h3 className="text-2xl font-bold text-slate-800">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6 sm:mb-8">
+              <h3 className="text-base sm:text-xl md:text-2xl font-bold text-slate-800">
                 Recent Discussions
               </h3>
               <button
                 onClick={() => setShowModal(true)}
-                className="flex items-center gap-2 bg-[#3e9e0a] text-white px-5 py-2 rounded-full text-sm hover:bg-[#47be07] transition shadow"
+                className="self-start flex items-center gap-1 sm:gap-2 bg-[#3e9e0a] text-white px-4 py-2 sm:px-4 sm:py-2 rounded-md text-xs sm:text-sm hover:bg-[#47be07] transition shadow"
               >
-                <FiPlus /> New Topic
+                <FiPlus className="text-xs sm:text-base" />
+                New Topic
               </button>
             </div>
 
