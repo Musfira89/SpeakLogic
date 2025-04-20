@@ -10,7 +10,6 @@ const images = [headerImg1, headerImg2, headerImg3];
 
 const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isVersion1, setIsVersion1] = useState(true); // Mobile version state
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -19,60 +18,48 @@ const HeroSection = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const slideInLeft = {
-    hidden: { opacity: 0, x: -200 },
+  const slideInTop = {
+    hidden: { opacity: 0, y: -50 },
     visible: {
       opacity: 1,
-      x: 0,
-      transition: { duration: 1.5, ease: "easeOut" },
+      y: 0,
+      transition: { duration: 1.2, ease: "easeOut" },
     },
   };
 
   const popUpImage = {
-    hidden: { opacity: 0, scale: 0.8 },
+    hidden: { opacity: 0, scale: 0.95 },
     visible: {
       opacity: 1,
       scale: 1,
-      transition: { duration: 1.5, ease: "easeOut" },
+      transition: { duration: 1.2, ease: "easeOut" },
     },
   };
 
   return (
     <section className="bg-gradient-to-br from-[#f0fff0] to-[#f8fcf8] py-22 px-6 md:px-16 lg:px-32 transition-all overflow-hidden">
-      {/* Mobile Toggle Button for Testing (You can remove this) */}
-      <div className="md:hidden flex justify-end mb-4">
-        <button
-          onClick={() => setIsVersion1(!isVersion1)}
-          className="text-sm bg-gray-200 text-gray-700 px-4 py-2 rounded-full shadow"
-        >
-          Switch to {isVersion1 ? "Version 2 (Text First)" : "Version 1 (Image First)"}
-        </button>
-      </div>
-
-      <div
-        className={`max-w-7xl mx-auto flex ${
-          isVersion1 ? "flex-col-reverse" : "flex-col"
-        } md:flex-row items-center justify-between gap-16`}
-      >
-        {/* Left Section - Text */}
+      <div className="max-w-7xl mx-auto flex flex-col items-center justify-center gap-16 text-center">
+        
+        {/* Text Section */}
         <motion.div
-          className="flex-1 mt-16 md:mt-36"
+          className="mt-20 w-full max-w-7xl px-4 text-center lg:text-left"
           initial="hidden"
           animate="visible"
-          variants={slideInLeft}
+          variants={slideInTop}
         >
-          <h1 className="text-3xl sm:text-5xl md:text-5xl  font-bold text-gray-600 leading-tight mb-6">
+          <h1 className="text-3xl sm:text-5xl md:text-5xl font-bold text-gray-600 leading-tight mb-6">
             We Promote Better <br />
             <span className="text-[#3d960d]">Communication</span>
           </h1>
-          <p className="text-gray-700 mb-10 max-w-2xl leading-relaxed text-lg">
+          <p className="text-gray-700 mb-10 max-w-4xl leading-relaxed text-lg mx-auto lg:mx-0">
             Welcome to <strong>SpeakLogic.org</strong> — a nonprofit promoting
             logical communication through books and software.
-            <br /> <br />
+            <br />
+            <br />
             Click links for problems, solutions, downloads, and hardcopy orders
             to improve rational thinking and understanding.
           </p>
-          <div className="flex items-center gap-5 flex-wrap">
+          <div className="flex items-center justify-center lg:justify-start gap-5 flex-wrap">
             <button className="bg-[#3d960d] text-white px-8 py-3 text-lg rounded-full font-semibold hover:bg-[#3eaa06] transition shadow-lg hover:scale-105">
               Get Started
             </button>
@@ -85,34 +72,32 @@ const HeroSection = () => {
           </div>
         </motion.div>
 
-        {/* Right Section - Image Carousel */}
+        {/* Banner Carousel Section */}
         <motion.div
-          className="flex-1 flex flex-col items-center mt-16 md:mt-36 w-full px-4 md:px-0"
+          className="w-full max-w-4xl"
           initial="hidden"
           animate="visible"
           variants={popUpImage}
         >
-          <div className="relative w-full max-w-2xl overflow-hidden">
-            <div className="w-full overflow-hidden">
-              <motion.div
-                className="flex"
-                animate={{ x: `-${currentIndex * 100}%` }}
-                transition={{ duration: 1.5, ease: "easeInOut" }}
-              >
-                {images.map((img, i) => (
-                  <img
-                    key={i}
-                    src={img}
-                    alt={`carousel-img-${i}`}
-                    className="w-full flex-shrink-0 object-cover"
-                  />
-                ))}
-              </motion.div>
-            </div>
+          <div className="relative w-full overflow-hidden rounded-xl shadow-lg">
+            <motion.div
+              className="flex transition-all"
+              animate={{ x: `-${currentIndex * 100}%` }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+            >
+              {images.map((img, i) => (
+                <img
+                  key={i}
+                  src={img}
+                  alt={`carousel-img-${i}`}
+                  className="w-full flex-shrink-0 object-cover max-h-[400px]"
+                />
+              ))}
+            </motion.div>
           </div>
 
           {/* Dots */}
-          <div className="flex gap-2 mt-12">
+          <div className="flex gap-2 justify-center mt-8">
             {images.map((_, index) => (
               <span
                 key={index}

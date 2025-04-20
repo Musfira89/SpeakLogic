@@ -4,7 +4,10 @@ import Books from "./pages/Books";
 import Problem from "./pages/Problems";
 import Solution from "./pages/Solution";
 import Store from "./pages/Store";
-
+import Forum from "./pages/Forum";
+import Software from "./pages/Software";
+import FAQ from "./pages/FAQ";
+import Help from "./pages/Help";
 function App() {
   return (
     <>
@@ -16,10 +19,11 @@ function App() {
           <Route path="/problem" element={<Problem />} />
           <Route path="/solution" element={<Solution />} />
           <Route path="/store" element={<Store />} />
+          <Route path="/forums" element={<Forum />} />
+          <Route path="/softwares" element={<Software />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/help" element={<Help />} />
 
-          {/* <Route path="/apps" component={Apps} />
-          <Route path="/softwares" component={Softwares} />
-          <Route path="/store" component={Store} /> */}
         </Routes>
       </Router>
     </>

@@ -50,8 +50,8 @@ const Books = () => {
           className="relative bg-gradient-to-r from-[#47be07] via-[#3e9e0a] to-[#47be07] py-28 px-4 text-white text-center"
         >
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-wide mb-3 text-shadow-lg">
-              BOOKS
-            </h1>
+            BOOKS
+          </h1>
           <nav className="text-sm font-medium flex justify-center space-x-2">
             <Link to="/" className="hover:underline">
               Home

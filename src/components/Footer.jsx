@@ -80,21 +80,21 @@ const Footer = () => {
             <div className="space-y-4">
               <div className="group cursor-pointer transition duration-300">
                 <p className="font-semibold text-gray-600">Address:</p>
-                <p className="text-gray-700 group-hover:text-[#47be07] transition duration-300">
+                <p className="text-gray-500 group-hover:text-[#47be07] transition duration-300">
                   A108 Adam Street, New York, NY 535022
                 </p>
               </div>
 
               <div className="group cursor-pointer transition duration-300">
                 <p className="font-semibold text-gray-600">Phone:</p>
-                <p className="text-gray-700 group-hover:text-[#47be07] transition duration-300">
+                <p className="text-gray-500 group-hover:text-[#47be07] transition duration-300">
                   +1 5589 55488 55
                 </p>
               </div>
 
               <div className="group cursor-pointer transition duration-300">
                 <p className="font-semibold text-gray-600">Email:</p>
-                <p className="text-gray-700 group-hover:text-[#47be07] transition duration-300">
+                <p className="text-gray-500 group-hover:text-[#47be07] transition duration-300">
                   info@example.com
                 </p>
               </div>

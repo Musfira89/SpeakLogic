@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaExclamationTriangle, FaBookOpen, FaLightbulb } from "react-icons/fa";
@@ -57,15 +56,18 @@ const Problems = () => {
               Why Communication is a{" "}
               <span className="text-[#47be07]">Real Problem?</span>
             </h2>
-            <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-              It’s impossible to master communication without understanding its{" "}
-              <strong>principles</strong>. Sadly, most people have never been
-              taught logical frameworks for effective dialogue.
+            <p className="text-sm text-gray-600 mb-6 leading-relaxed">
+              Communication is a key part of life and makes it possible for
+              people to work together. Without communication, it would be
+              impossible for us to work together or to execute the normal
+              functions of life.
             </p>
-            <p className="text-gray-700 text-sm sm:text-base">
-              <strong className="text-[#47be07]">SpeakLogic.org</strong>{" "}
-              believes that communication is more than speaking — it’s about
-              clarity, logic, and purpose.
+            <p className="text-sm text-gray-600 mb-6 leading-relaxed">
+              To better understand the relationship between our communications
+              and the functions that we execute, it is important to treat both
+              entities as separate. For instance, if we communicate about buying
+              a house, we can treat the communication about buying the house as
+              an entity, and the purchase of the house as another entity.
             </p>
           </motion.div>
 
@@ -84,15 +86,14 @@ const Problems = () => {
           </motion.div>
         </section>
 
-        {/* Challenges Section */}
         <section className="bg-white border-t border-gray-200 py-20 lg:py-24 px-6 lg:px-12">
-          <div className="max-w-7xl mx-auto text-center">
+          <div className="max-w-6xl mx-auto text-center">
             <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-5">
               The Real Challenges We Face
             </h3>
-            <p className="text-gray-600 max-w-3xl mx-auto mb-14 text-sm sm:text-base">
-              Explore the core barriers preventing logical, effective
-              communication in modern society.
+            <p className="text-sm text-gray-600 mb-12 leading-relaxed">
+              Explore how flawed communication impacts everything from personal
+              decisions to major life outcomes.
             </p>
 
             <div className="grid md:grid-cols-3 gap-10 text-left">
@@ -101,45 +102,42 @@ const Problems = () => {
                   icon: (
                     <FaExclamationTriangle className="text-red-500 text-4xl sm:text-5xl mb-6" />
                   ),
-                  title: "Lack of Awareness",
-                  text: "Most people aren’t exposed to the logical foundations of communication, resulting in habitual misunderstandings.",
+                  title: "Dependence on Communication",
+                  text: "The functions that we execute depend heavily on the quality of communication. Without clarity, even simple tasks fail.",
                 },
                 {
                   icon: (
                     <FaBookOpen className="text-blue-500 text-4xl sm:text-5xl mb-6" />
                   ),
-                  title: "No Standardized Learning",
-                  text: "Unlike math or science, there’s no structured, logical curriculum for mastering communication.",
+                  title: "Quality Matters",
+                  text: "It’s not just about talking — flawed or low-quality communication leads to flawed results and misunderstandings.",
                 },
                 {
                   icon: (
                     <FaLightbulb className="text-yellow-500 text-4xl sm:text-5xl mb-6" />
                   ),
-                  title: "Emotion Over Logic",
-                  text: "Conversations are often driven by emotion, not reason, causing reactions over reflection.",
+                  title: "Internal vs External Views",
+                  text: "Communication includes both what is expressed and what is thought. Ignoring either leads to unresolved problems.",
                 },
               ].map((item, index) => (
                 <div
                   key={index}
-                  className={`bg-[#F9FAFB] border border-gray-200 rounded-3xl p-8 sm:p-10 group transform transition duration-500 cursor-pointer relative overflow-hidden
-                  ${
+                  className={`bg-[#F9FAFB] border border-gray-200 rounded-3xl p-8 sm:p-10 group transform transition duration-500 cursor-pointer relative overflow-hidden ${
                     index === 1
-                      ? "rotate-[1deg] scale-[1.03] shadow-xl -translate-y-1"
-                      : "hover:rotate-[1.5deg] hover:scale-[1.05] hover:shadow-2xl hover:-translate-y-2"
+                      ? "scale-[1.05] shadow-2xl z-10"
+                      : "hover:scale-[1.05] hover:shadow-2xl"
                   }`}
-                  style={{ perspective: "1000px" }}
+                  style={{
+                    transformStyle: "preserve-3d",
+                    perspective: "1000px",
+                  }}
                 >
-                  <div
-                    className={`transition-transform duration-500 ${
-                      index === 1 ? "rotate-x-6" : "group-hover:rotate-x-6"
-                    }`}
-                    style={{ transformStyle: "preserve-3d" }}
-                  >
+                  <div className="transition-transform duration-500">
                     {item.icon}
-                    <h4 className="text-xl sm:text-2xl font-bold mb-3">
+                    <h4 className="text-base sm:text-xl font-bold mb-3 leading-wide">
                       {item.title}
                     </h4>
-                    <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                    <p className="text-sm text-gray-600 mb-12 leading-relaxed">
                       {item.text}
                     </p>
                     <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-tr from-[#47be07] to-[#3e9e0a] opacity-10 rounded-full blur-2xl rotate-45" />
@@ -175,16 +173,21 @@ const Problems = () => {
               className="flex-1 space-y-5"
             >
               <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight">
-                Communication Gaps Are Everywhere
+                Solving Communication Problems Starts With Awareness
               </h3>
-              <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-                From education systems to corporate meetings, logical,
-                structured conversation is rare. The result? Misunderstandings,
-                conflicts, and missed opportunities.
+              <p className="text-sm text-gray-600 mb-6 leading-relaxed">
+                Without identifying and correcting errors in the way we express
+                and think about information, flawless execution is impossible.
+                Logical dialogue isn't just helpful — it's essential.
+              </p>
+              <p className="text-sm text-gray-600 mb-6 leading-relaxed">
+                At the core of solvin g communication issues is recognizing both
+                the inner and outer components of dialogue. Every thought and
+                spoken word must align.
               </p>
               <Link
                 to="/solutions"
-                className="inline-block bg-gradient-to-r from-black to-gray-800 text-white font-semibold px-6 py-3 rounded-full hover:scale-105 transition duration-300"
+                className="inline-block bg-gradient-to-r  from-black to-gray-800 text-white text-xs font-medium px-6 py-3 rounded-md "
               >
                 Discover Solutions
               </Link>
@@ -198,7 +201,7 @@ const Problems = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="relative bg-[#47be07] text-white py-20 lg:py-24 text-center px-6 lg:px-12 overflow-hidden"
+          className="relative bg-[#3c9b09] text-white py-20 lg:py-24 text-center px-6 lg:px-12 overflow-hidden"
         >
           {/* Floating Blobs */}
           <svg
@@ -232,7 +235,7 @@ const Problems = () => {
             <h3 className="text-3xl sm:text-4xl font-bold mb-6">
               Ready to Lead with Logic?
             </h3>
-            <p className="text-base sm:text-lg mb-10 max-w-2xl mx-auto">
+            <p className="text-base sm:text-md mb-10 max-w-[35rem] mx-auto">
               Join our mission to redefine communication through logic-first
               thinking, books, software, and practical experiences.
             </p>

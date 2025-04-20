@@ -50,7 +50,8 @@ const Solutions = () => {
           </motion.div>
         </section>
 
-        {/* Modern Split Image + Text Section */}
+
+        {/* Visual Logic Flow Section */}
         <section className="grid lg:grid-cols-2 gap-10 items-center max-w-7xl mx-auto px-8 lg:px-14 py-20 md:py-24">
           <motion.div
             className="rounded-3xl overflow-hidden shadow-xl border border-white bg-white bg-opacity-60 backdrop-blur-md"
@@ -60,7 +61,7 @@ const Solutions = () => {
           >
             <motion.img
               src={solution}
-              alt="Solution Flow 1"
+              alt="Solution Flow"
               className="w-full h-full object-cover transform transition duration-700 hover:scale-105"
             />
           </motion.div>
@@ -71,24 +72,27 @@ const Solutions = () => {
             whileInView="visible"
             variants={fadeInUp}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-[#2e7c0e] transform transition duration-500  ">
-              Visual Logic Flow
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-[#2e7c0e]">
+              The Solution Process
             </h2>
             <p className="text-sm text-gray-600 mb-6 leading-relaxed">
-              This process visually guides learners and professionals through
-              logical reasoning, enabling structured conversation patterns that
-              improve clarity, learning, and engagement.
+              The functions we execute rely on our communication. To perform
+              these functions effectively, we must identify and correct
+              communication errors by learning the principle of communication.
+              This principle is not learned automatically — it requires
+              conscious understanding, enabling structured, error-free execution
+              of our actions.
             </p>
             <Link
               to="/downloads"
-              className="inline-block bg-[#2e7c0e] text-white text-xs font-medium  px-6 py-3 rounded-md transform transition duration-300 hover:bg-[#256a0b] hover:scale-110"
+              className="inline-block bg-[#2e7c0e] text-white text-xs font-medium px-6 py-3 rounded-md transform transition duration-300 hover:bg-[#256a0b] hover:scale-110"
             >
-              Explore Resources
+              Learn More
             </Link>
           </motion.div>
         </section>
 
-        {/* Reverse Section */}
+        {/* Interactive Tools Section */}
         <section className="grid lg:grid-cols-2 gap-10 items-center max-w-7xl mx-auto px-6 lg:px-14 py-20 md:py-24">
           <motion.div
             className="text-left order-2 lg:order-1"
@@ -96,19 +100,23 @@ const Solutions = () => {
             whileInView="visible"
             variants={fadeInUp}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-[#2e7c0e] transform transition ">
-              Interactive Training Tools
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-[#2e7c0e]">
+              Learning the Principle
             </h2>
             <p className="text-sm text-gray-600 mb-6 leading-relaxed">
-              From classroom to corporate — SpeakLogic tools use digital
-              interfaces, assessments, and real-time feedback to help users
-              apply logic frameworks to everyday interactions.
+              Learning the principle of communication is essential for
+              identifying and correcting errors. With tools, books, and software
+              available, Speak Logic makes learning accessible. Whether you
+              prefer instructor-led learning or self-study through books like{" "}
+              <em>Fundamental of Communication</em>, you can dive deep into the
+              concept through real-world examples and exercises (e.g., Exercises
+              294, 295, 370).
             </p>
             <Link
               to="/downloads"
-              className="inline-block bg-[#2e7c0e] text-white text-xs font-medium  px-6 py-3 rounded-md transform transition duration-300 hover:bg-[#256a0b] hover:scale-110"
+              className="inline-block bg-[#2e7c0e] text-white text-xs font-medium px-6 py-3 rounded-md transform transition duration-300 hover:bg-[#256a0b] hover:scale-110"
             >
-              Try Tools
+              Download Resources
             </Link>
           </motion.div>
 
@@ -120,13 +128,40 @@ const Solutions = () => {
           >
             <motion.img
               src={solution1}
-              alt="Solution Flow 2"
+              alt="Interactive Tools"
               className="w-full h-full object-cover transform transition duration-700 hover:scale-105"
             />
           </motion.div>
         </section>
 
-        {/* CTA */}
+        {/* Tools & Guidelines Section */}
+        <section className="max-w-6xl mx-auto px-6 lg:px-14 py-16 md:py-20 text-gray-700">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeInUp}
+          >
+            <h3 className="text-2xl sm:text-3xl font-bold mb-6 text-[#2e7c0e] text-center">
+              Software & Guidelines
+            </h3>
+            <p className="text-sm mb-6 leading-relaxed text-center max-w-3xl mx-auto">
+              Speak Logic also provides analysis software to help you identify
+              errors in your communication and correct them effectively. The
+              analysis guideline combines all listed resources and should be
+              used once you've developed a good foundational understanding.
+            </p>
+            <div className="text-center">
+              <Link
+                to="/downloads"
+                className="inline-block bg-[#2e7c0e] text-white text-xs font-medium px-6 py-3 rounded-md transform transition duration-300 hover:bg-[#256a0b] hover:scale-110"
+              >
+                Get the Software
+              </Link>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* CTA Section */}
         <section className="bg-[#2e7c0e] text-white py-16 sm:py-20 px-6 text-center relative overflow-hidden">
           <motion.h4
             className="md:text-3xl sm:text-4xl font-bold mb-4 text-shadow-lg"
@@ -143,7 +178,7 @@ const Solutions = () => {
             variants={fadeInUp}
           >
             Logical communication creates better leaders, teachers, and
-            collaborators. Let SpeakLogic help you reshape the way you connect.
+            collaborators. Let Speak Logic help you reshape the way you connect.
           </motion.p>
           <Link
             to="/downloads"
