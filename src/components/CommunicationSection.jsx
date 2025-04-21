@@ -1,6 +1,6 @@
 import React from "react";
 import rightImg from "../assets/rightImg.png";
-import { FaUserTie, FaPhone, FaCircleCheck } from "react-icons/fa6";
+import {FaCircleCheck } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 

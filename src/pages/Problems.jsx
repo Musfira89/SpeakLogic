@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaExclamationTriangle, FaBookOpen, FaLightbulb } from "react-icons/fa";
 import { motion } from "framer-motion";
@@ -11,7 +11,20 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0 },
 };
 
+const popUpImage = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 1 } },
+};
 const Problems = () => {
+  const images = [problem, problem1];
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 4000); // auto-slide every 4 seconds
+    return () => clearInterval(interval);
+  }, [images.length]);
   return (
     <>
       <div className="min-h-screen bg-[#F9FAFB] text-gray-800 font-sans">
@@ -42,6 +55,42 @@ const Problems = () => {
           </motion.div>
         </section>
 
+        {/* Carousel Section */}
+        <motion.div
+          className="w-full max-w-4xl mx-auto mt-16"
+          initial="hidden"
+          animate="visible"
+          variants={popUpImage}
+        >
+          <div className="relative w-full overflow-hidden rounded-xl shadow-lg">
+            <motion.div
+              className="flex transition-all"
+              animate={{ x: `-${currentIndex * 100}%` }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+            >
+              {images.map((img, i) => (
+                <img
+                  key={i}
+                  src={img}
+                  alt={`carousel-img-${i}`}
+                  className="w-full flex-shrink-0 object-cover max-h-[400px]"
+                />
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Dots */}
+          <div className="flex gap-2 justify-center mt-8">
+            {images.map((_, index) => (
+              <span
+                key={index}
+                className={`w-8 h-1 rounded-md ${
+                  index === currentIndex ? "bg-[#47be07]" : "bg-[#cceac1]"
+                } transition-all`}
+              />
+            ))}
+          </div>
+        </motion.div>
         {/* Intro Section */}
         <section className="max-w-7xl mx-auto px-6 lg:px-12 py-20 lg:py-24 grid md:grid-cols-2 gap-14 items-center">
           <motion.div

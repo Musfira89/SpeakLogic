@@ -37,43 +37,16 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="bg-gradient-to-br from-[#f0fff0] to-[#f8fcf8] py-22 px-6 md:px-16 lg:px-32 transition-all overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col items-center justify-center gap-16 text-center">
-        {/* Text Section */}
-        <motion.div
-          className="mt-26 w-full max-w-7xl px-4 text-center lg:text-left"
-          initial="hidden"
-          animate="visible"
-          variants={slideInTop}
-        >
-          <h1 className="text-3xl sm:text-5xl md:text-5xl font-bold text-gray-600 leading-tight mb-6">
-            We Promote Better <br />
-            <span className="text-[#3d960d]">Communication</span>
-          </h1>
-          <p className="text-gray-700 mb-10 max-w-4xl leading-relaxed text-lg mx-auto lg:mx-0">
-            Welcome to <strong>SpeakLogic.org</strong> — a nonprofit promoting
-            logical communication through books and software.
-            <br />
-            <br />
-            Click links for problems, solutions, downloads, and hardcopy orders
-            to improve rational thinking and understanding.
-          </p>
-          <div className="flex items-center justify-center lg:justify-start gap-5 flex-wrap">
-            <button className="bg-[#3d960d] text-white px-8 py-3 text-lg rounded-full font-semibold hover:bg-[#3eaa06] transition shadow-lg hover:scale-105">
-              Get Started
-            </button>
-            <button className="flex items-center gap-3 text-[#333] font-medium group text-lg transition">
-              <span className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-[#47be07] text-[#47be07] transition-all duration-300 group-hover:border-[#3eaa06] group-hover:text-[#3eaa06]">
-                <FaPlay className="text-sm" />
-              </span>
-              Play Video
-            </button>
-          </div>
-        </motion.div>
+    <section className="relative bg-gradient-to-r from-[#e8f5e9] via-white to-[#efffef] py-22 px-6 md:px-16 lg:px-32 transition-all overflow-hidden">
+      {/* Decorative Green Circles */}
+      <div className="absolute -top-20 -left-20 w-[300px] h-[300px] bg-[#47be07] opacity-20 rounded-full blur-3xl z-0"></div>
+      <div className="absolute top-1/2 -right-40 w-[400px] h-[400px] bg-[#47be07] opacity-15 rounded-full blur-3xl z-0"></div>
+      <div className="absolute bottom-0 left-1/3 w-[200px] h-[200px] bg-[#47be07] opacity-10 rounded-full blur-2xl z-0"></div>
 
+      <div className="max-w-7xl mx-auto flex flex-col items-center justify-center gap-16 text-center">
         {/* Banner Carousel Section */}
         <motion.div
-          className="w-full max-w-4xl"
+          className="w-full max-w-4xl mt-36"
           initial="hidden"
           animate="visible"
           variants={popUpImage}
@@ -105,6 +78,38 @@ const HeroSection = () => {
                 } transition-all`}
               />
             ))}
+          </div>
+        </motion.div>
+
+        {/* Text Section */}
+        <motion.div
+          className="mt-16 w-full max-w-7xl px-4 text-center flex flex-col items-center justify-center"
+          initial="hidden"
+          animate="visible"
+          variants={slideInTop}
+        >
+          <h1 className="text-4xl sm:text-5xl md:text-5xl font-bold text-gray-600 leading-tight mb-6 text-center">
+            We Promote Better <br />
+            <span className="text-[#3d960d]">Communication</span>
+          </h1>
+          <p className="text-gray-700 mb-10 max-w-4xl leading-relaxed text-md mx-auto lg:mx-0 text-center">
+            Welcome to <strong>SpeakLogic.org</strong> — a nonprofit promoting
+            logical communication through books and software.
+            <br />
+            <br />
+            Click links for problems, solutions, downloads, and hardcopy orders
+            to improve rational thinking and understanding.
+          </p>
+          <div className="flex items-center justify-center lg:justify-start gap-5 flex-wrap">
+            <button className="bg-[#3d960d] text-white px-8 py-3 text-lg rounded-md font-semibold hover:bg-[#3eaa06] transition shadow-lg hover:scale-105">
+              Get Started
+            </button>
+            <button className="flex items-center gap-3 text-[#333] font-medium group text-lg transition">
+              <span className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-[#47be07] text-[#47be07] transition-all duration-300 group-hover:border-[#3eaa06] group-hover:text-[#3eaa06]">
+                <FaPlay className="text-sm" />
+              </span>
+              Play Video
+            </button>
           </div>
         </motion.div>
       </div>

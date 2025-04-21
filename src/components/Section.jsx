@@ -1,7 +1,10 @@
-import React from "react";
+import React , {useEffect, useState} from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import phoneImage from "../assets/phone-app-screen.webp";
+import img1 from "../assets/phone-app-screen.webp";
+import img2 from "../assets/phone-app-screen.webp";
+import img3 from "../assets/phone-app-screen.webp";
+
 import {
   FaCommentDots,
   FaTimesCircle,
@@ -104,6 +107,16 @@ const AnimatedItem = ({ children, index }) => {
 };
 
 const SolutionSection = () => {
+  const [mobileIndex, setMobileIndex] = useState(0);
+  const mobileImages = [img1, img2, img3];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMobileIndex((prev) => (prev + 1) % mobileImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   const { ref: imgRef, inView: imgInView } = useInView({
     triggerOnce: true,
     threshold: 0.3,
@@ -146,17 +159,42 @@ const SolutionSection = () => {
           ))}
         </div>
 
-        {/* Center Image */}
-        <div className="w-full flex justify-center my-8 lg:my-0">
-          <motion.img
+        {/* Center Carousel Image */}
+        <div className="w-full flex flex-col items-center justify-center my-8 lg:my-0">
+          <motion.div
+            className="relative w-full max-w-[200px] sm:max-w-[220px] md:max-w-[280px] lg:max-w-[200px] xl:max-w-[210px] overflow-hidden rounded-xl shadow-md"
             ref={imgRef}
-            src={phoneImage}
-            alt="Phone Preview"
-            className="w-full max-w-[200px] sm:max-w-[220px] md:max-w-[280px] lg:max-w-[200px] xl:max-w-[210px] h-auto"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={imgInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, ease: "easeOut" }}
-          />
+          >
+            <motion.div
+              className="flex transition-all"
+              animate={{ x: `-${mobileIndex * 100}%` }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+            >
+              {mobileImages.map((img, i) => (
+                <img
+                  key={i}
+                  src={img}
+                  alt={`mobile-img-${i}`}
+                  className="w-full flex-shrink-0 object-cover h-auto"
+                />
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Dots */}
+          <div className="flex gap-2 justify-center mt-5">
+            {mobileImages.map((_, index) => (
+              <span
+                key={index}
+                className={`w-6 h-1 rounded-md ${
+                  index === mobileIndex ? "bg-[#47be07]" : "bg-[#cceac1]"
+                } transition-all`}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Right Points */}
