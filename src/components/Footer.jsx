@@ -7,7 +7,6 @@ import {
   FaXTwitter,
 } from "react-icons/fa6";
 import logo from "../../public/Artboard 1.png";
-import FixedSocialIcons from "./SocialSidebar";
 
 const Footer = () => {
   const quickLinks1 = [
@@ -98,6 +97,7 @@ const Footer = () => {
         </div>
 
         {/* Divider */}
+        {/* Divider */}
         <div className="border-t border-gray-200 mt-10 pt-6 text-center text-xs sm:text-xs text-gray-600">
           © {new Date().getFullYear()}{" "}
           <span className="font-semibold text-black">SpeakLogic</span>. All
@@ -105,7 +105,8 @@ const Footer = () => {
         </div>
 
         {/* Horizontal Social Media Icons */}
-        <div className="flex justify-center space-x-2 mt-4">
+        {/* Horizontal Social Media Icons */}
+        <div className="flex justify-center space-x-3 mt-4">
           {[
             { Icon: FaXTwitter, url: "https://twitter.com" },
             { Icon: FaInstagram, url: "https://instagram.com" },
@@ -117,16 +118,13 @@ const Footer = () => {
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 sm:p-2 rounded-full border border-gray-300 hover:border-[#379f00] transition duration-300 cursor-pointer group"
+              className="bg-gradient-to-br from-white to-gray-100 text-[#379f00] hover:bg-[#379f00] hover:text-[#379f00] hover:scale-110 p-2 sm:p-2 rounded-full shadow-lg transition-all duration-300 ease-in-out ring-1 ring-[#a2ff70] hover:ring-[#379f00]"
             >
-              <Icon className="text-gray-700 group-hover:text-[#379f00] text-[12px] sm:text-xs transition duration-300" />
+              <Icon className="text-inherit text-[12px] sm:text-xs transition duration-300" />
             </a>
           ))}
         </div>
       </footer>
-
-      {/* Fixed Social Icons on the Sidebar */}
-      <FixedSocialIcons />
     </>
   );
 };

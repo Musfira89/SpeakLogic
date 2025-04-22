@@ -32,34 +32,50 @@ const Features = () => {
   const renderCard = (section, index) => (
     <div
       key={index}
-      className="relative group flex flex-col md:flex-row overflow-hidden rounded-2xl shadow-lg border border-gray-200 bg-white transition-all duration-300 hover:shadow-2xl"
+      className="relative group flex flex-col rounded-2xl shadow-lg border border-gray-200 bg-white transition-all duration-300 hover:shadow-2xl"
     >
       {/* Image Section */}
-      <div className="relative md:w-2/5 w-full">
+      <div className="relative w-full">
         <img
           src={section.image}
           alt={section.heading}
-          className="w-full h-full object-cover md:rounded-l-2xl rounded-t-2xl md:rounded-t-none"
+          className="w-full h-full object-cover rounded-t-2xl"
         />
-        <span className="absolute top-4 left-4 bg-[#47be07] text-white text-xs sm:text-sm px-3 py-1 rounded-full font-semibold shadow-md">
+        <span
+          className="absolute top-0 left-0 w-8 h-8 bg-[#47be07] text-white text-[11px] flex items-center justify-center font-bold shadow-md"
+          style={{ borderBottomRightRadius: "15px" }}
+        >
           #{section.number}
         </span>
 
-        {/* Hover Overlay */}
-        <div className="absolute inset-0 bg-[#47be07] opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
-
-        {/* Action Buttons */}
-        <div className="absolute bottom-4 right-4 z-10 flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <IconButton icon={<FaDownload />} onClick={() => openModal("download", index)} label="Download" />
-          <IconButton icon={<FaPrint />} onClick={() => openModal("print", index)} label="Print" />
-          <IconButton icon={<FaInfoCircle />} onClick={() => openModal("info", index)} label="Details" />
-          <IconButton icon={<FaChevronDown />} onClick={() => openModal("type", index)} label="More" />
+        {/* Top-Right Action Buttons */}
+        <div className="absolute top-4 right-4 flex flex-col gap-2 z-10">
+          <IconButton
+            icon={<FaDownload size={14} />}
+            onClick={() => openModal("download", index)}
+            label="Download"
+          />
+          <IconButton
+            icon={<FaPrint size={14} />}
+            onClick={() => openModal("print", index)}
+            label="Print"
+          />
+          <IconButton
+            icon={<FaInfoCircle size={14} />}
+            onClick={() => openModal("info", index)}
+            label="Details"
+          />
+          <IconButton
+            icon={<FaChevronDown size={14} />}
+            onClick={() => openModal("type", index)}
+            label="More"
+          />
         </div>
       </div>
 
       {/* Content Section */}
-      <div className="md:w-3/5 w-full px-6 py-5 flex flex-col justify-center bg-white">
-        <h3 className="text-xl font-semibold text-gray-800 leading-tight mb-3">
+      <div className="w-full px-6 py-5 flex flex-col justify-center bg-white">
+        <h3 className="text-lg font-bold text-gray-800 leading-tight mb-3">
           {section.heading}
         </h3>
 
@@ -119,7 +135,7 @@ const Features = () => {
       </div>
 
       {/* Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16">
         {(activeTab === "Download App" ? appSections : limitedSections).map(
           (section, index) => renderCard(section, index)
         )}

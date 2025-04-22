@@ -25,6 +25,7 @@ const Problems = () => {
     }, 4000); // auto-slide every 4 seconds
     return () => clearInterval(interval);
   }, [images.length]);
+
   return (
     <>
       <div className="min-h-screen bg-[#F9FAFB] text-gray-800 font-sans">
@@ -91,6 +92,10 @@ const Problems = () => {
             ))}
           </div>
         </motion.div>
+
+
+
+        
         {/* Intro Section */}
         <section className="max-w-7xl mx-auto px-6 lg:px-12 py-20 lg:py-24 grid md:grid-cols-2 gap-14 items-center">
           <motion.div
