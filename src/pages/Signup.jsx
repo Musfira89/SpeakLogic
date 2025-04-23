@@ -51,7 +51,7 @@ const Signup = () => {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Full Name (John Doe)"
+                placeholder="Full Name"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-[#3d960d] focus:outline-none text-sm pl-12"
               />
               <FaUser className="absolute top-1/2 left-4 transform -translate-y-1/2 text-gray-400" />
@@ -79,7 +79,7 @@ const Signup = () => {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password (••••••••)"
+                placeholder="Password"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-[#3d960d] focus:outline-none text-sm pl-12"
               />
               <FaLock className="absolute top-1/2 left-4 transform -translate-y-1/2 text-gray-400" />
@@ -93,7 +93,7 @@ const Signup = () => {
                 required
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="Confirm Password (••••••••)"
+                placeholder="Confirm Password "
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-[#3d960d] focus:outline-none text-sm pl-12"
               />
               <FaKey className="absolute top-1/2 left-4 transform -translate-y-1/2 text-gray-400" />

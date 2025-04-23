@@ -15,7 +15,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#e8f5e9] to-[#f2fef2] flex items-center justify-center px-6 py-10">
+    <div className="min-h-screen bg-gradient-to-br from-[#e8f5e9] to-[#f2fef2] flex items-center justify-center px-6 py-6">
       <motion.div
         className="w-full max-w-lg bg-white shadow-xl rounded-xl overflow-hidden"
         initial={{ opacity: 0, y: 50 }}
@@ -45,7 +45,7 @@ const Login = () => {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email Address (you@example.com)"
+                placeholder="Email Address"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-[#3d960d] focus:outline-none text-sm pl-12"
               />
               <FaEnvelope className="absolute top-1/2 left-4 transform -translate-y-1/2 text-gray-400" />
@@ -59,7 +59,7 @@ const Login = () => {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password (••••••••)"
+                placeholder="Password"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-[#3d960d] focus:outline-none text-sm pl-12"
               />
               <FaLock className="absolute top-1/2 left-4 transform -translate-y-1/2 text-gray-400" />
