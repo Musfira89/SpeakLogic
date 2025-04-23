@@ -28,7 +28,9 @@ const FAQ = () => {
       {/* Header Section */}
       <section className="relative h-[45vh] sm:h-[50vh] bg-gradient-to-r from-[#47be07] to-[#2e7c0e] flex flex-col items-center justify-center text-white text-center px-4">
         <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-3">FAQs</h1>
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-wide mb-3 text-shadow-lg mt-16">
+            FAQs
+          </h1>
           <nav className="text-sm sm:text-base font-medium flex justify-center space-x-2 text-white mt-2">
             <Link to="/" className="hover:underline">
               Home

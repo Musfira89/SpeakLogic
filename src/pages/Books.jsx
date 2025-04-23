@@ -64,33 +64,31 @@ const Books = () => {
         {/* Main */}
         <div className="relative z-10 px-6 md:px-16 py-16">
           {/* Tabs */}
-{/* Tabs */}
-<div className="flex justify-center mb-10">
-  <div className="flex flex-wrap gap-3 sm:gap-6">
-    {["All Categories", "Math", "Non Math"].map((tab) => (
-      <motion.button
-        whileTap={{ scale: 0.95 }}
-        key={tab}
-        onClick={() => setActiveTab(tab)}
-        className={`relative px-3 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-sm font-medium rounded-md transition
+          <div className="flex justify-center mb-16 mt-10">
+            <div className="flex flex-wrap gap-4 sm:gap-6">
+              {["All Categories", "Math", "Non Math"].map((tab) => (
+                <motion.button
+                  whileTap={{ scale: 0.95 }}
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`relative px-3 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-sm font-medium rounded-md transition
           ${
             activeTab === tab
               ? "bg-black text-white shadow"
               : "bg-gray-100 text-gray-800 hover:bg-gray-200"
           }`}
-      >
-        {tab} Books
-        {activeTab === tab && (
-          <motion.span
-            layoutId="underline"
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-white rounded-full mt-1"
-          />
-        )}
-      </motion.button>
-    ))}
-  </div>
-</div>
-
+                >
+                  {tab} Books
+                  {activeTab === tab && (
+                    <motion.span
+                      layoutId="underline"
+                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-white rounded-full mt-1"
+                    />
+                  )}
+                </motion.button>
+              ))}
+            </div>
+          </div>
 
           {/* Book Cards */}
           <motion.div layout className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -197,7 +195,7 @@ const IconButton = ({ icon, onClick, label }) => (
   <button
     onClick={onClick}
     aria-label={label}
-    className="w-10 h-10 rounded-full bg-[#47be07] text-white flex items-center justify-center hover:bg-[#3aa506] transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#47be07]"
+    className="w-12 h-12 rounded-full bg-[#47be07] text-white flex items-center justify-center hover:bg-[#3aa506] transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#47be07]"
     title={label}
   >
     {icon}

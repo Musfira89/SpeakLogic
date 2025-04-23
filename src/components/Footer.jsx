@@ -20,12 +20,12 @@ const Footer = () => {
   const quickLinks2 = [
     { label: "Problems", path: "/problem" },
     { label: "Videos", path: "/videos" },
-    { label: "Questions", path: "/questions" },
+    { label: "Questions", path: "/faq" },
     { label: "Newsletter", path: "/newsletter" },
   ];
 
   const quickLinks3 = [
-    { label: "My Account", path: "/my-account" },
+    { label: "My Account", path: "/login" },
     { label: "Help", path: "/help" },
     { label: "SiteMap", path: "/sitemap" },
     { label: "Contact Us", path: "/contact-us" },

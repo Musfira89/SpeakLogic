@@ -40,7 +40,7 @@ const Store = () => {
         {/* Header Section */}
         <div className="relative bg-gradient-to-r from-[#47be07] via-[#3e9e0a] to-[#47be07] py-24 px-4 sm:px-6 md:px-16 text-white text-center overflow-hidden z-10 mb-11">
           <div className="relative z-10">
-            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-wide mb-3 text-shadow-lg">
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-wide mb-3 text-shadow-lg mt-16">
               STORE
             </h1>
             <nav className="text-sm sm:text-base font-medium text-white flex justify-center space-x-2">

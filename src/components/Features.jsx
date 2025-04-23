@@ -151,7 +151,7 @@ const IconButton = ({ icon, onClick, label }) => (
   <button
     onClick={onClick}
     aria-label={label}
-    className="w-10 h-10 rounded-full bg-[#47be07] text-white flex items-center justify-center hover:bg-[#3aa506] transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#47be07]"
+    className="w-12 h-12 rounded-full bg-[#47be07] text-white flex items-center justify-center hover:bg-[#3aa506] transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#47be07]"
     title={label}
   >
     {icon}
