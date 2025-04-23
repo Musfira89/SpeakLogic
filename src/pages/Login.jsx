@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaEnvelope, FaLock } from "react-icons/fa";
+import { Link } from "react-router-dom"; 
 import logo from "../../public/Artboard 1.png";
 
 const Login = () => {
@@ -9,9 +10,8 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     console.log({ email, password });
-    // Handle login logic here (e.g., authentication)
+    // Handle login logic here
   };
 
   return (
@@ -76,12 +76,12 @@ const Login = () => {
 
           <p className="mt-6 text-sm text-center text-gray-500">
             Don’t have an account?{" "}
-            <a
-              href="/signup"
+            <Link
+              to="/signup"
               className="text-[#3d960d] font-medium hover:underline"
             >
               Sign up
-            </a>
+            </Link>
           </p>
         </div>
       </motion.div>

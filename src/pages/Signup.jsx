@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaUser, FaEnvelope, FaLock, FaKey } from "react-icons/fa";
 import logo from "../../public/Artboard 1.png";
+import { Link } from "react-router-dom"; 
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -110,12 +111,12 @@ const Signup = () => {
 
           <p className="mt-6 text-sm text-center text-gray-500">
             Already have an account?{" "}
-            <a
-              href="/login"
+            <Link
+              to="/login"
               className="text-[#3d960d] font-medium hover:underline"
             >
-              Sign in
-            </a>
+              Login
+            </Link>
           </p>
         </div>
       </motion.div>
