@@ -42,8 +42,8 @@ const Features = () => {
           className="w-full h-full object-cover rounded-t-2xl"
         />
         <span
-          className="absolute top-0 left-0 w-8 h-8 bg-[#47be07] text-white text-[11px] flex items-center justify-center font-bold shadow-md"
-          style={{ borderBottomRightRadius: "15px" }}
+          className="absolute top-0 left-0 bg-[#47be07] text-white text-[17px] px-3 py-2 font-bold shadow-md"
+          style={{ borderBottomRightRadius: "20px" }}
         >
           #{section.number}
         </span>

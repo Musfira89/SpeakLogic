@@ -4,6 +4,12 @@ import { FaExclamationTriangle, FaBookOpen, FaLightbulb } from "react-icons/fa";
 import { motion } from "framer-motion";
 import problem from "../assets/problem-banner.jpg";
 import problem1 from "../assets/problem-banner-1.jpg";
+
+import img1 from "../assets/Problem/1.jpg";
+import img2 from "../assets/Problem/2.jpg";
+import img3 from "../assets/Problem/3.jpg";
+import img4 from "../assets/Problem/4.jpg";
+
 import Footer from "../components/Footer";
 
 const fadeInUp = {
@@ -15,8 +21,10 @@ const popUpImage = {
   hidden: { opacity: 0, scale: 0.9 },
   visible: { opacity: 1, scale: 1, transition: { duration: 1 } },
 };
+
+
 const Problems = () => {
-  const images = [problem, problem1];
+  const images = [img1, img2, img3, img4];
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -25,6 +33,8 @@ const Problems = () => {
     }, 4000); // auto-slide every 4 seconds
     return () => clearInterval(interval);
   }, [images.length]);
+
+
 
   return (
     <>
@@ -42,7 +52,7 @@ const Problems = () => {
             animate="visible"
             variants={fadeInUp}
           >
-            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-wide mb-3 text-shadow-lg">
+            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-wide mb-3 text-shadow-lg mt-16">
               PROBLEMS
             </h1>
             {/* Breadcrumbs inside Header */}
@@ -93,9 +103,6 @@ const Problems = () => {
           </div>
         </motion.div>
 
-
-
-        
         {/* Intro Section */}
         <section className="max-w-7xl mx-auto px-6 lg:px-12 py-20 lg:py-24 grid md:grid-cols-2 gap-14 items-center">
           <motion.div

@@ -49,7 +49,7 @@ const Books = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="relative bg-gradient-to-r from-[#47be07] via-[#3e9e0a] to-[#47be07] py-28 px-4 text-white text-center"
         >
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-wide mb-3 text-shadow-lg">
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-wide mb-3 text-shadow-lg mt-16">
             BOOKS
           </h1>
           <nav className="text-sm font-medium flex justify-center space-x-2">
@@ -63,47 +63,37 @@ const Books = () => {
 
         {/* Main */}
         <div className="relative z-10 px-6 md:px-16 py-16">
-          {/* Section Title */}
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-4xl font-extrabold text-[#1f2937] mb-12 text-center"
-          >
-            Available Books
-            <div className="w-16 h-1 bg-[#47be07] rounded-full mx-auto mt-4" />
-          </motion.h2>
-
           {/* Tabs */}
-          <div className="flex justify-center mb-14">
-            <div className="flex flex-wrap gap-6 bg-white rounded-xl px-6 py-4 shadow-lg">
-              {["All Categories", "Math", "Non Math"].map((tab) => (
-                <motion.button
-                  whileTap={{ scale: 0.95 }}
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`relative px-6 py-2.5 text-sm font-semibold rounded-full transition 
-                    ${
-                      activeTab === tab
-                        ? "bg-black text-white shadow-md"
-                        : "bg-gray-100 text-gray-800 hover:bg-gray-200"
-                    }`}
-                >
-                  {tab} Books
-                  {activeTab === tab && (
-                    <motion.span
-                      layoutId="underline"
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-white rounded-full mt-1"
-                    />
-                  )}
-                </motion.button>
-              ))}
-            </div>
-          </div>
+{/* Tabs */}
+<div className="flex justify-center mb-10">
+  <div className="flex flex-wrap gap-3 sm:gap-6">
+    {["All Categories", "Math", "Non Math"].map((tab) => (
+      <motion.button
+        whileTap={{ scale: 0.95 }}
+        key={tab}
+        onClick={() => setActiveTab(tab)}
+        className={`relative px-3 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-sm font-medium rounded-md transition
+          ${
+            activeTab === tab
+              ? "bg-black text-white shadow"
+              : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+          }`}
+      >
+        {tab} Books
+        {activeTab === tab && (
+          <motion.span
+            layoutId="underline"
+            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-white rounded-full mt-1"
+          />
+        )}
+      </motion.button>
+    ))}
+  </div>
+</div>
+
 
           {/* Book Cards */}
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <AnimatePresence>
               {filteredSections.map((section, index) => (
                 <motion.div
@@ -113,59 +103,82 @@ const Books = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4 }}
-                  className="relative group flex md:flex-row flex-col overflow-hidden rounded-2xl shadow-xl border border-gray-200 bg-white"
+                  className="relative group flex flex-col rounded-2xl shadow-lg border border-gray-200 bg-white transition-all duration-300 hover:shadow-2xl"
                 >
-                  {/* Image & Overlay */}
-                  <div className="relative md:w-[40%] w-full cursor-pointer group/image z-10">
+                  {/* Image Section */}
+                  <div className="relative w-full">
                     <img
                       src={section.image}
-                      alt="Visual"
-                      className="w-full h-full object-cover rounded-l-2xl"
+                      alt={section.heading}
+                      className="w-full h-full object-cover rounded-t-2xl"
                     />
-                    <span className="absolute top-4 left-4 bg-[#47be07] text-white text-xs px-3 py-1 rounded-full font-semibold shadow z-20">
+                    {/* Bigger Book Tag */}
+                    <span
+                      className="absolute top-0 left-0 bg-[#47be07] text-white text-[17px] px-3 py-2 font-bold shadow-md"
+                      style={{ borderBottomRightRadius: "20px" }}
+                    >
                       #{section.number}
                     </span>
-                    <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                      <div className="absolute top-0 left-[-100%] w-full h-full bg-[#47be07] opacity-20 group-hover/image:left-0 transition-all duration-700 ease-in-out" />
-                    </div>
 
-                    {/* Centered Icons */}
-                    <div className="absolute bottom-4 right-4 z-20 opacity-0 group-hover/image:opacity-100 transition-opacity duration-500 flex gap-2">
+                    {/* Top-Right Action Buttons */}
+                    <div className="absolute top-4 right-4 flex flex-col gap-2 z-10">
                       <IconButton
-                        icon={<FaDownload />}
+                        icon={<FaDownload size={14} />}
                         onClick={() => openModal("download", index)}
+                        label="Download"
                       />
                       <IconButton
-                        icon={<FaPrint />}
+                        icon={<FaPrint size={14} />}
                         onClick={() => openModal("print", index)}
+                        label="Print"
                       />
                       <IconButton
-                        icon={<FaInfoCircle />}
+                        icon={<FaInfoCircle size={14} />}
                         onClick={() => openModal("info", index)}
+                        label="Details"
                       />
                       <IconButton
-                        icon={<FaChevronDown />}
+                        icon={<FaChevronDown size={14} />}
                         onClick={() => openModal("type", index)}
+                        label="More"
                       />
                     </div>
                   </div>
 
-                  {/* Content */}
-                  <div className="md:w-[60%] w-full px-6 py-5 flex flex-col justify-center">
-                    <h3 className="text-xl font-bold text-[#1f2937] mb-2">
+                  {/* Content Section */}
+                  <div className="w-full px-6 py-5 flex flex-col justify-center bg-white">
+                    <h3 className="text-lg font-bold text-gray-800 leading-tight mb-3">
                       {section.heading}
                     </h3>
-                    <p className="text-sm text-[#4B5563] leading-relaxed">
+
+                    <p className="text-gray-600 text-sm leading-relaxed">
                       {expandedIndex === index
                         ? section.description
                         : section.description.slice(0, 100) + "... "}
-                      <button
-                        onClick={() => toggleShowMore(index)}
-                        className="text-[#47be07] underline font-medium text-xs ml-1"
-                      >
-                        {expandedIndex === index ? "Show Less" : "Show More"}
-                      </button>
+                      {expandedIndex !== index && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleShowMore(index);
+                          }}
+                          className="text-[#47be07] underline font-medium text-sm ml-1"
+                        >
+                          Show More
+                        </button>
+                      )}
                     </p>
+
+                    {expandedIndex === index && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleShowMore(index);
+                        }}
+                        className="text-[#47be07] underline font-medium text-sm mt-2 self-start"
+                      >
+                        Show Less
+                      </button>
+                    )}
                   </div>
                 </motion.div>
               ))}
@@ -180,15 +193,15 @@ const Books = () => {
   );
 };
 
-const IconButton = ({ icon, onClick }) => (
-  <motion.button
-    whileHover={{ scale: 1.1 }}
-    whileTap={{ scale: 0.9 }}
+const IconButton = ({ icon, onClick, label }) => (
+  <button
     onClick={onClick}
-    className="w-9 h-9 rounded-full bg-[#47be07] text-white flex items-center justify-center shadow-md"
+    aria-label={label}
+    className="w-10 h-10 rounded-full bg-[#47be07] text-white flex items-center justify-center hover:bg-[#3aa506] transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#47be07]"
+    title={label}
   >
     {icon}
-  </motion.button>
+  </button>
 );
 
 export default Books;

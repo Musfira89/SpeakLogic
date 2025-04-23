@@ -1,25 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import solution from "../assets/solution-banner.jpg";
 import solution1 from "../assets/solution-banner-1.jpg";
 import Footer from "../components/Footer";
 
+import img1 from "../assets/Problem/1.jpg";
+import img2 from "../assets/Problem/2.jpg";
+import img3 from "../assets/Problem/3.jpg";
+import img4 from "../assets/Problem/4.jpg";
+
+
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
 };
 
-const scaleIn = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 1, ease: "easeOut" },
-  },
+const popUpImage = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 1 } },
 };
 
 const Solutions = () => {
+  const images = [img1, img2, img3, img4];
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 4000); // auto-slide every 4 seconds
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+
   return (
     <>
       <div className="bg-[#f3f4f6] text-gray-800 font-sans">
@@ -36,7 +49,7 @@ const Solutions = () => {
             animate="visible"
             variants={fadeInUp}
           >
-            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-wide mb-3 text-shadow-lg">
+            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-wide mb-3 text-shadow-lg mt-16">
               SOLUTIONS
             </h1>
             {/* Breadcrumbs inside Header */}
@@ -49,6 +62,46 @@ const Solutions = () => {
             </nav>
           </motion.div>
         </section>
+
+        {/* Carousel Section */}
+        <motion.div
+          className="w-full max-w-4xl mx-auto mt-16"
+          initial="hidden"
+          animate="visible"
+          variants={popUpImage}
+        >
+          <div className="relative w-full overflow-hidden rounded-xl shadow-lg">
+            <motion.div
+              className="flex transition-all"
+              animate={{ x: `-${currentIndex * 100}%` }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+            >
+              {images.map((img, i) => (
+                <img
+                  key={i}
+                  src={img}
+                  alt={`carousel-img-${i}`}
+                  className="w-full flex-shrink-0 object-cover max-h-[400px]"
+                />
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Dots */}
+          <div className="flex gap-2 justify-center mt-8">
+            {images.map((_, index) => (
+              <span
+                key={index}
+                className={`w-8 h-1 rounded-md ${
+                  index === currentIndex ? "bg-[#47be07]" : "bg-[#cceac1]"
+                } transition-all`}
+              />
+            ))}
+          </div>
+        </motion.div>
+
+
+
 
 
         {/* Visual Logic Flow Section */}

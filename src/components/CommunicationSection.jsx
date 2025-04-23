@@ -29,7 +29,7 @@ const CommunicationSection = () => {
   return (
     <section
       ref={ref}
-      className="flex flex-col md:flex-row items-start justify-between px-6 sm:px-8 md:px-10 lg:px-16 xl:px-20 2xl:px-24 py-16 font-sans gap-12 leading-relaxed overflow-hidden mb-24 mt-10 md:mt-20 max-w-screen-xl mx-auto"
+      className="flex flex-col md:flex-row items-start justify-between px-6 sm:px-8 md:px-10 lg:px-16 xl:px-20 2xl:px-24 py-16 font-sans gap-12 leading-relaxed overflow-hidden mt-2 md:mt-2 max-w-screen-xl mx-auto"
     >
       {/* Left Container */}
       <motion.div

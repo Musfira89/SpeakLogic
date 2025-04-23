@@ -123,13 +123,13 @@ const SolutionSection = () => {
   });
 
   return (
-    <section className="font-sora w-full max-w-[1280px] mx-auto px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 py-12 sm:py-16 md:py-20 xl:py-24 mb-24 mt-28">
+    <section className="font-sora w-full max-w-[1280px] mx-auto px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 py-12 sm:py-16 md:py-20 xl:py-24 mb-4">
       {/* Section Heading */}
-      <div className="text-center mb-10">
-        <h2 className="text-xl sm:text-2xl md:text-3xl xl:text-[26px] font-semibold text-gray-800 leading-tight">
+      <div className="text-center mb-22">
+        <h2 className="text-xl sm:text-2xl md:text-3xl xl:text-[26px] font-bold text-gray-800 leading-tight">
           Our Solution Process & Learning Principles
         </h2>
-        <div className="w-12 h-1 bg-[#41aa0980] mx-auto mt-3 mb-2 rounded" />
+        <div className="w-16 h-1 bg-[#41aa0980] mx-auto mt-2 mb-3 rounded" />
         <p className="text-gray-600 text-sm sm:text-base md:text-[15px] max-w-2xl mx-auto leading-relaxed">
           A step-by-step approach to identifying and correcting communication
           errors by understanding and applying core communication principles.
@@ -137,7 +137,7 @@ const SolutionSection = () => {
       </div>
 
       {/* Main Content: Left - Center Image - Right */}
-      <div className="flex flex-col lg:flex-row items-start justify-between mt-14">
+      <div className="flex flex-col lg:flex-row items-start justify-between ">
         {/* Left Points */}
         <div className="space-y-8 w-full max-w-md mx-auto lg:mx-0">
           {points.map((item, idx) => (

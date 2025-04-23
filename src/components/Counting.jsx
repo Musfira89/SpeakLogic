@@ -20,7 +20,7 @@ const items = [
   },
   {
     icon: <FaBox size={22} />,
-    title: "Free Learning Kits",
+    title: "Teaching Materials",
     description: "To help with the teaching of the principle",
   },
 ];
@@ -29,7 +29,7 @@ const LearningSection = () => {
   const { ref } = useInView({ triggerOnce: true, threshold: 0.5 });
 
   return (
-    <div className=" px-2 sm:px-4 md:px-2 py-10 sm:py-16  transition-all duration-500 mt-22">
+    <div className=" px-2 sm:px-4 md:px-2 py-2 sm:py-16  transition-all duration-500 mt-16">
       <div
         ref={ref}
         className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8"
