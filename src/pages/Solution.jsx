@@ -10,7 +10,6 @@ import img2 from "../assets/Problem/2.jpg";
 import img3 from "../assets/Problem/3.jpg";
 import img4 from "../assets/Problem/4.jpg";
 
-
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
@@ -32,77 +31,52 @@ const Solutions = () => {
     return () => clearInterval(interval);
   }, [images.length]);
 
-
   return (
     <>
       <div className="bg-[#f3f4f6] text-gray-800 font-sans">
-        {/* Header Section */}
-        <section
-          className="relative h-[45vh] sm:h-[50vh] bg-gradient-to-r from-[#47be07] to-[#2e7c0e] flex flex-col items-center justify-center text-white text-center px-4 bg-fixed"
-          style={{
-            backgroundSize: "cover",
-          }}
-        >
-          <motion.div
-            className="relative z-10"
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-          >
-            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-wide mb-3 text-shadow-lg mt-16">
-              SOLUTIONS
-            </h1>
-            {/* Breadcrumbs inside Header */}
-            <nav className="text-sm sm:text-base font-medium flex justify-center space-x-2 text-white mt-2">
-              <Link to="/" className="hover:underline">
-                Home
-              </Link>
-              <span>&gt;</span>
-              <span className="text-white">Solutions</span>
-            </nav>
-          </motion.div>
-        </section>
+        {/* Carousel */}
+        <div className="relative w-full overflow-hidden ">
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#3d960d]/50 to-transparent z-10 pointer-events-none" />
 
-        {/* Carousel Section */}
-        <motion.div
-          className="w-full max-w-4xl mx-auto mt-16"
-          initial="hidden"
-          animate="visible"
-          variants={popUpImage}
-        >
-          <div className="relative w-full overflow-hidden rounded-xl shadow-lg">
-            <motion.div
-              className="flex transition-all"
-              animate={{ x: `-${currentIndex * 100}%` }}
-              transition={{ duration: 1.2, ease: "easeInOut" }}
-            >
-              {images.map((img, i) => (
-                <img
-                  key={i}
-                  src={img}
-                  alt={`carousel-img-${i}`}
-                  className="w-full flex-shrink-0 object-cover max-h-[400px]"
-                />
-              ))}
-            </motion.div>
-          </div>
+          <motion.div
+            className="flex transition-transform duration-700 ease-in-out"
+            animate={{ x: `-${currentIndex * 100}%` }}
+          >
+            {images.map((img, idx) => (
+              <img
+                key={idx}
+                src={img}
+                alt={`slide-${idx}`}
+                className="w-full object-cover max-h-[520px]"
+              />
+            ))}
+          </motion.div>
 
           {/* Dots */}
-          <div className="flex gap-2 justify-center mt-8">
-            {images.map((_, index) => (
+          <div className="relative z-20 flex justify-center gap-2 mt-4">
+            {images.map((_, idx) => (
               <span
-                key={index}
-                className={`w-8 h-1 rounded-md ${
-                  index === currentIndex ? "bg-[#47be07]" : "bg-[#cceac1]"
-                } transition-all`}
+                key={idx}
+                className={`w-8 h-1 rounded ${
+                  idx === currentIndex ? "bg-[#47be07]" : "bg-[#cceac1]"
+                }`}
               />
             ))}
           </div>
-        </motion.div>
+        </div>
 
-
-
-
+        {/* Problem Heading and Breadcrumb */}
+        <div className="text-center mt-16">
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">SOLUTION</h1>
+          <nav className="text-sm font-medium text-[#3c970b] mb-6">
+            <Link to="/" className="hover:underline">
+              Home
+            </Link>
+            <span className="mx-2">&gt;</span>
+            <span>Solution</span>
+          </nav>
+        </div>
 
         {/* Visual Logic Flow Section */}
         <section className="grid lg:grid-cols-2 gap-10 items-center max-w-7xl mx-auto px-8 lg:px-14 py-20 md:py-24">

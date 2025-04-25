@@ -1,4 +1,4 @@
-import React , {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import img1 from "../assets/phone-app-screen.webp";
@@ -130,7 +130,7 @@ const SolutionSection = () => {
           Our Solution Process & Learning Principles
         </h2>
         <div className="w-16 h-1 bg-[#41aa0980] mx-auto mt-2 mb-3 rounded" />
-        <p className="text-gray-600 text-sm sm:text-base md:text-[15px] max-w-2xl mx-auto leading-relaxed">
+        <p className="text-gray-600 text-sm sm:text-base md:text-[13px] max-w-2xl mx-auto leading-relaxed">
           A step-by-step approach to identifying and correcting communication
           errors by understanding and applying core communication principles.
         </p>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaUser, FaEnvelope, FaLock, FaKey } from "react-icons/fa";
 import logo from "../../public/Artboard 1.png";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   const [name, setName] = useState("");

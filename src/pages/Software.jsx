@@ -7,6 +7,8 @@ import img1 from "../assets/Problem/1.jpg";
 import img2 from "../assets/Problem/2.jpg";
 import img3 from "../assets/Problem/3.jpg";
 import img4 from "../assets/Problem/4.jpg";
+import { FaInfoCircle } from "react-icons/fa";
+import Modal from "../components/Modal";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -18,9 +20,33 @@ const popUpImage = {
   visible: { opacity: 1, scale: 1, transition: { duration: 1 } },
 };
 
+const IconButton = ({ icon, onClick, label }) => (
+  <button
+    onClick={onClick}
+    aria-label={label}
+    title={label}
+    className="w-12 h-12 rounded-full bg-[#47be07] text-white flex items-center justify-center hover:bg-[#3aa506] transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#47be07]"
+  >
+    {icon}
+  </button>
+);
+
 const Software = () => {
   const images = [img1, img2, img3, img4];
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [modal, setModal] = useState({
+    open: false,
+    type: "",
+    sectionIndex: null,
+  });
+
+  const openModal = (type, index) => {
+    setModal({ open: true, type, sectionIndex: index });
+  };
+
+  const closeModal = () => {
+    setModal({ open: false, type: "", sectionIndex: null });
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -32,82 +58,62 @@ const Software = () => {
   return (
     <>
       <div className="min-h-screen bg-[#F9FAFB] text-gray-800 font-sans">
-        {/* Header Section */}
-        <section
-          className="relative h-[45vh] sm:h-[50vh] bg-gradient-to-r from-[#47be07] to-[#2e7c0e] flex flex-col items-center justify-center text-white text-center px-4 bg-fixed"
-          style={{
-            backgroundSize: "cover",
-          }}
-        >
-          <motion.div
-            className="relative z-10"
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-          >
-            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-wide mb-3 text-shadow-lg mt-16">
-              SOFTWARE
-            </h1>
-            {/* Breadcrumbs inside Header */}
-            <nav className="text-sm sm:text-base font-medium flex justify-center space-x-2 text-white mt-2">
-              <Link to="/" className="hover:underline">
-                Home
-              </Link>
-              <span>&gt;</span>
-              <span className="text-white">Software</span>
-            </nav>
-          </motion.div>
-        </section>
+        {/* Carousel */}
+        <div className="relative w-full overflow-hidden ">
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#3d960d]/50 to-transparent z-10 pointer-events-none" />
 
-        {/* Carousel Section */}
-        <motion.div
-          className="w-full max-w-4xl mx-auto mt-16"
-          initial="hidden"
-          animate="visible"
-          variants={popUpImage}
-        >
-          <div className="relative w-full overflow-hidden rounded-xl shadow-lg">
-            <motion.div
-              className="flex transition-all"
-              animate={{ x: `-${currentIndex * 100}%` }}
-              transition={{ duration: 1.2, ease: "easeInOut" }}
-            >
-              {images.map((img, i) => (
-                <img
-                  key={i}
-                  src={img}
-                  alt={`carousel-img-${i}`}
-                  className="w-full flex-shrink-0 object-cover max-h-[400px]"
-                />
-              ))}
-            </motion.div>
-          </div>
+          <motion.div
+            className="flex transition-transform duration-700 ease-in-out"
+            animate={{ x: `-${currentIndex * 100}%` }}
+          >
+            {images.map((img, idx) => (
+              <img
+                key={idx}
+                src={img}
+                alt={`slide-${idx}`}
+                className="w-full object-cover max-h-[520px]"
+              />
+            ))}
+          </motion.div>
 
           {/* Dots */}
-          <div className="flex gap-2 justify-center mt-8">
-            {images.map((_, index) => (
+          <div className="relative z-20 flex justify-center gap-2 mt-4">
+            {images.map((_, idx) => (
               <span
-                key={index}
-                className={`w-8 h-1 rounded-md ${
-                  index === currentIndex ? "bg-[#47be07]" : "bg-[#cceac1]"
-                } transition-all`}
+                key={idx}
+                className={`w-8 h-1 rounded ${
+                  idx === currentIndex ? "bg-[#47be07]" : "bg-[#cceac1]"
+                }`}
               />
             ))}
           </div>
-        </motion.div>
+        </div>
+
+        {/* Problem Heading and Breadcrumb */}
+        <div className="text-center mt-16">
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">SOFTWARE</h1>
+          <nav className="text-sm font-medium text-[#3c970b] mb-6">
+            <Link to="/" className="hover:underline">
+              Home
+            </Link>
+            <span className="mx-2">&gt;</span>
+            <span>Software</span>
+          </nav>
+        </div>
 
         {/* Instructions Section */}
-        <section className="px-6 sm:px-10 md:px-16 xl:px-32 py-16 bg-[#F9FAFB] text-gray-800">
-          <div className="max-w-4xl mx-auto text-sm space-y-12">
+        <section className="px-6 sm:px-6 md:px-10 xl:px-16 py-16 bg-[#F9FAFB] text-gray-800">
+          <div className="max-w-5xl mx-auto text-sm space-y-12">
             {/* Heading */}
-            <h2 className="text-3xl font-extrabold text-center text-[#3d960d] mb-10">
+            <h2 className="text-3xl font-extrabold text-left text-[#3d960d] mb-10">
               Installation Instructions
             </h2>
 
             <div className="space-y-8">
               {/* Download Software */}
               <div className="space-y-4">
-                <p className="leading-relaxed text-sm text-justify">
+                <p className="leading-relaxed text-sm text-left">
                   <span className="font-semibold text-[#3e9e0a] text-md">
                     Download Software:
                   </span>{" "}
@@ -120,7 +126,7 @@ const Software = () => {
 
               {/* Speak Logic Information Analysis */}
               <div className="space-y-4">
-                <p className="leading-relaxed text-sm text-justify">
+                <p className="leading-relaxed text-sm text-left">
                   <span className="font-semibold text-[#3e9e0a]">
                     Speak Logic Information Analysis:
                   </span>{" "}
@@ -140,7 +146,7 @@ const Software = () => {
 
               {/* New Features */}
               <div className="space-y-4">
-                <p className="leading-relaxed text-sm text-justify">
+                <p className="leading-relaxed text-sm text-left">
                   <span className="font-semibold text-[#3e9e0a]">
                     New Features:
                   </span>{" "}
@@ -152,7 +158,7 @@ const Software = () => {
 
               {/* Installation Instructions */}
               <div className="space-y-4">
-                <p className="leading-relaxed text-sm text-justify">
+                <p className="leading-relaxed text-sm text-left">
                   <span className="font-semibold text-[#3e9e0a]">
                     Installation Instructions:
                   </span>{" "}
@@ -163,7 +169,7 @@ const Software = () => {
               </div>
 
               {/* Download Links */}
-              <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
+              <div className="flex flex-col sm:flex-row justify-start gap-4 mt-6">
                 <a
                   href="#download-windows-xp"
                   className="px-5 py-3 bg-[#3d960d] text-white rounded-lg shadow-lg hover:bg-[#3e9e0a] transition duration-300 transform hover:scale-105"
@@ -180,34 +186,41 @@ const Software = () => {
             </div>
           </div>
         </section>
-
         {/* Software Cards Section */}
         <section className="px-6 sm:px-10 md:px-16 xl:px-32 py-16">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-            {/* Mapping through the softwareData array to display software cards dynamically */}
-            {softwareData.map((software) => (
+            {softwareData.map((software, index) => (
               <div
                 key={software.id}
-                className="bg-white rounded-2xl p-6 shadow-xl ring-1 ring-gray-200 hover:ring-[#47be07] transition-transform hover:scale-[1.05]"
+                className="bg-white rounded-2xl p-6 shadow-xl ring-1 ring-gray-200 relative"
               >
+                {/* Top-Left Action Button on Card */}
+                <div className="absolute top-2 left-2 z-10">
+                  <IconButton
+                    icon={<FaInfoCircle size={14} />}
+                    onClick={() => openModal("info", index)}
+                    label="Details"
+                  />
+                </div>
+
                 <div className="h-48 w-full flex justify-center items-center overflow-hidden rounded-xl mb-4">
                   <img
                     src={software.imgSrc}
                     alt={`Software ${software.id}`}
-                    className="object-contain max-h-full max-w-full transition-transform duration-500 hover:scale-110"
+                    className="object-contain max-h-full max-w-full"
                   />
                 </div>
-                <div className="text-center">
+
+                <div className="text-center space-y-2">
                   <a
                     href={software.downloadLink}
-                    className="bg-[#47be07] text-white text-sm font-semibold py-2 px-6 rounded-md hover:bg-[#3e9e0a] transition inline-block shadow-md hover:shadow-lg mb-2 w-full"
+                    className="bg-[#47be07] text-white text-sm font-semibold py-2 px-6 rounded-md transition inline-block shadow-md w-full"
                   >
                     Download Software
                   </a>
-                  <br />
                   <a
                     href={software.videoLink}
-                    className="bg-[#47be07] text-white text-sm font-semibold py-2 px-6 rounded-md hover:bg-[#3e9e0a] transition inline-block shadow-md hover:shadow-lg w-full"
+                    className="bg-[#47be07] text-white text-sm font-semibold py-2 px-6 rounded-md transition inline-block shadow-md w-full"
                   >
                     Watch Video
                   </a>
@@ -215,6 +228,9 @@ const Software = () => {
               </div>
             ))}
           </div>
+
+          {/* Modal */}
+          <Modal modal={modal} closeModal={closeModal} />
         </section>
       </div>
       <Footer />

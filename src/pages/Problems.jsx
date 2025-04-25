@@ -22,7 +22,6 @@ const popUpImage = {
   visible: { opacity: 1, scale: 1, transition: { duration: 1 } },
 };
 
-
 const Problems = () => {
   const images = [img1, img2, img3, img4];
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -30,78 +29,56 @@ const Problems = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 4000); // auto-slide every 4 seconds
+    }, 8000); // auto-slide every 4 seconds
     return () => clearInterval(interval);
   }, [images.length]);
-
-
 
   return (
     <>
       <div className="min-h-screen bg-[#F9FAFB] text-gray-800 font-sans">
-        {/* Header Section */}
-        <section
-          className="relative h-[45vh] sm:h-[50vh] bg-gradient-to-r from-[#47be07] to-[#2e7c0e] flex flex-col items-center justify-center text-white text-center px-4 bg-fixed"
-          style={{
-            backgroundSize: "cover",
-          }}
-        >
-          <motion.div
-            className="relative z-10"
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-          >
-            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-wide mb-3 text-shadow-lg mt-16">
-              PROBLEMS
-            </h1>
-            {/* Breadcrumbs inside Header */}
-            <nav className="text-sm sm:text-base font-medium flex justify-center space-x-2 text-white mt-2">
-              <Link to="/" className="hover:underline">
-                Home
-              </Link>
-              <span>&gt;</span>
-              <span className="text-white">Problems</span>
-            </nav>
-          </motion.div>
-        </section>
+        {/* Carousel */}
+        <div className="relative w-full overflow-hidden ">
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#3d960d]/50 to-transparent z-10 pointer-events-none" />
 
-        {/* Carousel Section */}
-        <motion.div
-          className="w-full max-w-4xl mx-auto mt-16"
-          initial="hidden"
-          animate="visible"
-          variants={popUpImage}
-        >
-          <div className="relative w-full overflow-hidden rounded-xl shadow-lg">
-            <motion.div
-              className="flex transition-all"
-              animate={{ x: `-${currentIndex * 100}%` }}
-              transition={{ duration: 1.2, ease: "easeInOut" }}
-            >
-              {images.map((img, i) => (
-                <img
-                  key={i}
-                  src={img}
-                  alt={`carousel-img-${i}`}
-                  className="w-full flex-shrink-0 object-cover max-h-[400px]"
-                />
-              ))}
-            </motion.div>
-          </div>
+          <motion.div
+            className="flex transition-transform duration-700 ease-in-out"
+            animate={{ x: `-${currentIndex * 100}%` }}
+          >
+            {images.map((img, idx) => (
+              <img
+                key={idx}
+                src={img}
+                alt={`slide-${idx}`}
+                className="w-full object-cover max-h-[520px]"
+              />
+            ))}
+          </motion.div>
 
           {/* Dots */}
-          <div className="flex gap-2 justify-center mt-8">
-            {images.map((_, index) => (
+          <div className="relative z-20 flex justify-center gap-2 mt-4">
+            {images.map((_, idx) => (
               <span
-                key={index}
-                className={`w-8 h-1 rounded-md ${
-                  index === currentIndex ? "bg-[#47be07]" : "bg-[#cceac1]"
-                } transition-all`}
+                key={idx}
+                className={`w-8 h-1 rounded ${
+                  idx === currentIndex ? "bg-[#47be07]" : "bg-[#cceac1]"
+                }`}
               />
             ))}
           </div>
-        </motion.div>
+        </div>
+
+        {/* Problem Heading and Breadcrumb */}
+        <div className="text-center mt-16">
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">PROBLEM</h1>
+          <nav className="text-sm font-medium text-[#3c970b] mb-6">
+            <Link to="/" className="hover:underline">
+              Home
+            </Link>
+            <span className="mx-2">&gt;</span>
+            <span>Problems</span>
+          </nav>
+        </div>
 
         {/* Intro Section */}
         <section className="max-w-7xl mx-auto px-6 lg:px-12 py-20 lg:py-24 grid md:grid-cols-2 gap-14 items-center">
@@ -209,113 +186,32 @@ const Problems = () => {
           </div>
         </section>
 
-        {/* Visual Storytelling */}
-        <section className="py-20 lg:py-24 px-6 lg:px-12 bg-[#F9FAFB]">
-          <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="flex-1"
-            >
-              <img
-                src={problem1}
-                alt="Problem Illustration"
-                className="rounded-3xl shadow-2xl"
-              />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="flex-1 space-y-5"
-            >
-              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight">
-                Solving Communication Problems Starts With Awareness
+        {/* Ending CTA */}
+        <section className="py-20 px-6 lg:px-12 bg-[#F9FAFB] border-t border-gray-200">
+          <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <img
+              src={problem1}
+              alt="Solution"
+              className="w-full md:w-1/2 rounded-3xl shadow-xl"
+            />
+            <div className="md:w-1/2 space-y-5">
+              <h3 className="text-2xl lg:text-3xl font-bold">
+                Awareness is the First Step Toward a Solution
               </h3>
-              <p className="text-sm text-gray-600 mb-6 leading-relaxed">
-                Without identifying and correcting errors in the way we express
-                and think about information, flawless execution is impossible.
-                Logical dialogue isn't just helpful — it's essential.
-              </p>
-              <p className="text-sm text-gray-600 mb-6 leading-relaxed">
-                At the core of solvin g communication issues is recognizing both
-                the inner and outer components of dialogue. Every thought and
-                spoken word must align.
+              <p className="text-sm text-gray-600">
+                Great communication starts with understanding — both of
+                ourselves and others. When we listen and express with intention,
+                we break the cycle of confusion.
               </p>
               <Link
                 to="/solutions"
-                className="inline-block bg-gradient-to-r  from-black to-gray-800 text-white text-xs font-medium px-6 py-3 rounded-md "
+                className="inline-block bg-black text-white text-sm px-6 py-3 rounded-md"
               >
                 Discover Solutions
               </Link>
-            </motion.div>
+            </div>
           </div>
         </section>
-
-        {/* Call to Action */}
-        <motion.section
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="relative bg-[#3c9b09] text-white py-20 lg:py-24 text-center px-6 lg:px-12 overflow-hidden"
-        >
-          {/* Floating Blobs */}
-          <svg
-            className="absolute top-12 left-[-50px] w-40 opacity-20 z-0"
-            style={{ animation: "float 8s ease-in-out infinite" }}
-            viewBox="0 0 200 200"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill="#ffffff"
-              d="M44.8,-65.4C58.2,-56.3,69.5,-43.6,74.3,-29.4C79.1,-15.3,77.5,-0.1,70.6,12.9C63.6,25.9,51.3,36.7,38.3,46.1C25.3,55.5,12.6,63.4,-0.3,63.8C-13.1,64.2,-26.1,57.2,-38.6,48C-51.1,38.9,-63.2,27.7,-67.5,13.8C-71.8,-0.2,-68.2,-16.9,-59.5,-30.3C-50.8,-43.8,-36.9,-53.9,-22.2,-61.3C-7.4,-68.7,8.2,-73.5,22.7,-70.3C37.3,-67.1,52.6,-55.5,44.8,-65.4Z"
-              transform="translate(100 100)"
-            />
-          </svg>
-
-          <svg
-            className="absolute bottom-12 right-[-60px] w-52 opacity-20 z-0"
-            style={{ animation: "float 6s ease-in-out infinite" }}
-            viewBox="0 0 200 200"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill="#ffffff"
-              d="M44.8,-65.4C58.2,-56.3,69.5,-43.6,74.3,-29.4C79.1,-15.3,77.5,-0.1,70.6,12.9C63.6,25.9,51.3,36.7,38.3,46.1C25.3,55.5,12.6,63.4,-0.3,63.8C-13.1,64.2,-26.1,57.2,-38.6,48C-51.1,38.9,-63.2,27.7,-67.5,13.8C-71.8,-0.2,-68.2,-16.9,-59.5,-30.3C-50.8,-43.8,-36.9,-53.9,-22.2,-61.3C-7.4,-68.7,8.2,-73.5,22.7,-70.3C37.3,-67.1,52.6,-55.5,44.8,-65.4Z"
-              transform="translate(100 100)"
-            />
-          </svg>
-
-          {/* Content */}
-          <div className="relative z-10">
-            <h3 className="text-3xl sm:text-4xl font-bold mb-6">
-              Ready to Lead with Logic?
-            </h3>
-            <p className="text-base sm:text-md mb-10 max-w-[35rem] mx-auto">
-              Join our mission to redefine communication through logic-first
-              thinking, books, software, and practical experiences.
-            </p>
-            <Link
-              to="/solutions"
-              className="inline-block bg-white text-[#47be07] font-semibold px-6 py-3 rounded-full hover:bg-gray-100 transition"
-            >
-              Explore Solutions
-            </Link>
-          </div>
-
-          {/* Float animation */}
-          <style>{`
-            @keyframes float {
-              0%, 100% { transform: translateY(0px); }
-              50% { transform: translateY(-15px); }
-            }
-          `}</style>
-        </motion.section>
       </div>
 
       <Footer />

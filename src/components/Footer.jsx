@@ -21,7 +21,6 @@ const Footer = () => {
     { label: "Problems", path: "/problem" },
     { label: "Videos", path: "/videos" },
     { label: "Questions", path: "/faq" },
-    { label: "Newsletter", path: "/newsletter" },
   ];
 
   const quickLinks3 = [
@@ -96,7 +95,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Divider */}
+
         {/* Divider */}
         <div className="border-t border-gray-200 mt-10 pt-6 text-center text-xs sm:text-xs text-gray-600">
           © {new Date().getFullYear()}{" "}
@@ -104,7 +103,6 @@ const Footer = () => {
           rights reserved.
         </div>
 
-        {/* Horizontal Social Media Icons */}
         {/* Horizontal Social Media Icons */}
         <div className="flex justify-center space-x-3 mt-4">
           {[

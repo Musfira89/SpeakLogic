@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Section from "./Section";
 import ThemeSection from "./ThemeSection";
+import Testimonial from "./Testimonial";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <CommunicationSection />
       <Section />
       <Features />
+      <Testimonial/>
       <ThemeSection />
       <Footer />
     </>
