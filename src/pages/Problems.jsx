@@ -34,12 +34,12 @@ const Problems = () => {
           variants={fadeInUp}
           initial="hidden"
           animate="visible"
-          className="text-center mt-40 mb-20"
+          className="text-center mt-40 mb-12 md:mb-20"
         >
-          <h1 className="text-6xl font-extrabold text-gray-800 tracking-tight mb-6 drop-shadow-md">
+          <h1 className="text-2xl md:text-4xl font-extrabold text-gray-800 tracking-wide mb-3 drop-shadow-md">
             PROBLEM
           </h1>
-          <nav className="text-base font-semibold text-[#3c970b] flex justify-center items-center gap-3">
+          <nav className="text-xs font-semibold text-[#3c970b] flex justify-center items-center gap-1">
             <Link
               to="/"
               className="hover:underline hover:text-[#2e7c08] transition-colors duration-300"
@@ -62,7 +62,7 @@ const Problems = () => {
             {images.map((img, idx) => (
               <div
                 key={idx}
-                className="w-full shrink-0 transform transition-transform duration-700 hover:scale-105 hover:rotate-[-2deg]"
+                className="w-full shrink-0 transform transition-transform duration-700"
                 style={{
                   transform: idx === currentIndex ? "scale(1)" : "scale(0.9)",
                   transition: "transform 0.7s ease",
@@ -83,61 +83,62 @@ const Problems = () => {
           {images.map((_, idx) => (
             <motion.span
               key={idx}
-              className={`w-6 h-2 rounded-full transition-all duration-300 ${
+              className={`w-6 h-1 rounded-full transition-all duration-300 ${
                 idx === currentIndex ? "bg-[#47be07] scale-125" : "bg-[#cceac1]"
               }`}
               whileHover={{ scale: 1.2 }}
             />
           ))}
         </div>
-        {/* New Section */}
-        <div className="w-[90%] max-w-6xl mx-auto mt-32 mb-32 flex flex-col md:flex-row items-center gap-20">
-          {/* Left Text Side */}
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="flex-1 w-full md:w-[60%] justify-between"
-          >
-            <h2 className="text-4xl font-bold text-gray-900 leading-tight mb-6">
-              The Importance of{" "}
-              <span className="text-[#3c970b]">Clear Communication</span>
-            </h2>
-            <p className="text-sm text-gray-600 mb-4">
-              Communication drives everything — without it, collaboration and
-              life itself would collapse. When discussing tasks like buying a
-              house, it's crucial to separate the action and the communication
-              behind it.
-            </p>
-            <p className="text-sm text-gray-600 mb-5 ">
-              Both <span className="font-semibold">external communication</span>{" "}
-              (spoken or written) and{" "}
-              <span className="font-semibold">internal communication</span>
-              (our thoughts) must align clearly. Otherwise, errors can occur,
-              leading to flawed results.
-            </p>
-            <p className="text-sm text-gray-600">
-              To perform any function without errors, we must first ensure our
-              communication is accurate, precise, and aligned both externally
-              and internally.
-            </p>
-          </motion.div>
 
-          {/* Right Image Side */}
-          <motion.div
-            className="rounded-3xl overflow-hidden bg-gray-50 bg-opacity-60 backdrop-blur-md w-full md:w-[40%]"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-          >
-            <motion.img
-              src={img}
-              alt="Solution Flow"
-              className="w-full h-full object-cover transform transition duration-700 hover:scale-105"
-            />
-          </motion.div>
-        </div>
+      {/* New Section */}
+<div className="w-[90%] max-w-6xl mx-auto mt-32 mb-16 md:mb-32 flex flex-col md:flex-row items-center gap-20">
+  {/* Left Text Side */}
+  <motion.div
+    variants={fadeInUp}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true }}
+    className="flex-1 w-full md:w-[60%] justify-between"
+  >
+    <h2 className="text-2xl sm:text-2xl md:text-4xl font-bold text-gray-900 leading-tight mb-6">
+      The Importance of{" "}
+      <span className="text-[#3c970b]">Clear Communication.</span>
+    </h2>
+    <p className="text-sm text-gray-600 mb-4">
+      Communication drives everything — without it, collaboration and
+      life itself would collapse. When discussing tasks like buying a
+      house, it's crucial to separate the action and the communication
+      behind it.
+    </p>
+    <p className="text-sm text-gray-600 mb-5 ">
+      Both <span className="font-semibold">external communication</span>{" "}
+      (spoken or written) and{" "}
+      <span className="font-semibold">internal communication</span>
+      (our thoughts) must align clearly. Otherwise, errors can occur,
+      leading to flawed results.
+    </p>
+    <p className="text-sm text-gray-600">
+      To perform any function without errors, we must first ensure our
+      communication is accurate, precise, and aligned both externally
+      and internally.
+    </p>
+  </motion.div>
+
+  {/* Right Image Side */}
+  <motion.div
+    className="rounded-3xl overflow-hidden bg-gray-50 bg-opacity-60 backdrop-blur-md w-full md:w-[40%]"
+    initial={{ opacity: 0, scale: 0.95 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 1 }}
+  >
+    <motion.img
+      src={img}
+      alt="Solution Flow"
+      className="w-full h-full object-cover transform transition duration-700 hover:scale-105"
+    />
+  </motion.div>
+</div>
 
       </div>
 
