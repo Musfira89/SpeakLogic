@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FaSearch, FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
 import logo from "../../public/Artboard 1.png";
 import { Link } from "react-router-dom";
+import SearchHandler from "../components/SearchHandler";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -76,7 +77,7 @@ const Navbar = () => {
 
         {/* Search Bar */}
         <div className="relative w-64">
-          <div className="flex items-center border border-gray-300 rounded-md bg-white shadow-sm w-full pl-3 pr-10 py-3 relative">
+          {/* <div className="flex items-center border border-gray-300 rounded-md bg-white shadow-sm w-full pl-3 pr-10 py-3 relative">
             <div
               onClick={() => setDropdownOpen(!dropdownOpen)}
               className="flex items-center justify-between border-r border-gray-300 pr-3 w-[110px] cursor-pointer text-xs text-gray-600"
@@ -110,7 +111,8 @@ const Navbar = () => {
                 </div>
               ))}
             </div>
-          )}
+          )} */}
+          <SearchHandler />
         </div>
 
         {/* Auth Buttons */}
@@ -147,11 +149,13 @@ const Navbar = () => {
           <Link to="/problem">Problem</Link>
           <Link to="/solution">Solution</Link>
           <Link to="/books">Books</Link>
-          <Link to="/softwares">Software</Link>
+          <Link to="/softwares">App</Link>
           <Link to="/store">Store</Link>
           <Link to="/videos">Videos</Link>
-          <Link to="/help">Help</Link>
-          <Link to="/forums">Forums</Link>
+          {/* Mobile Search Bar */}
+          <div className="relative w-full">
+            <SearchHandler />
+          </div>
           <Link
             to="/login"
             className="text-[#41aa09] underline underline-offset-2 decoration-[#41aa09] font-medium"
@@ -164,45 +168,6 @@ const Navbar = () => {
           >
             Signup
           </Link>
-
-          {/* Mobile Search Bar */}
-          <div className="relative w-full">
-            <div className="flex items-center border border-gray-300 rounded-md bg-white shadow-sm w-full pl-3 pr-10 py-2 relative">
-              <div
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="flex items-center justify-between border-r border-gray-300 pr-3 w-[110px] cursor-pointer text-sm text-gray-600"
-              >
-                <span className="truncate">{selectedCategory}</span>
-                <FaChevronDown className="ml-1 text-[10px]" />
-              </div>
-              <input
-                type="text"
-                placeholder="Search..."
-                className="flex-1 outline-none bg-transparent text-sm placeholder-gray-500 px-2"
-              />
-              <FaSearch
-                className="absolute right-3 text-gray-400 cursor-pointer"
-                size={14}
-              />
-            </div>
-
-            {dropdownOpen && (
-              <div className="absolute left-0 top-14 bg-white border border-gray-200 shadow-md rounded-lg w-36 z-50">
-                {categories.map((cat) => (
-                  <div
-                    key={cat}
-                    className="px-4 py-2 text-xs hover:bg-gray-100 cursor-pointer"
-                    onClick={() => {
-                      setSelectedCategory(cat);
-                      setDropdownOpen(false);
-                    }}
-                  >
-                    {cat}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
         </div>
       )}
     </nav>

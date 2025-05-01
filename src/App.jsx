@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Home from "./components/Home";
 import Books from "./pages/Books";
 import Problem from "./pages/Problems";
@@ -9,12 +14,19 @@ import Software from "./pages/Software";
 import FAQ from "./pages/FAQ";
 import Help from "./pages/Help";
 import Navbar from "./components/Navbar";
-import Login from "./pages/Login"
+import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import CategoryPage from "./pages/CategoryPage";
 
 function AppWrapper() {
   const location = useLocation();
-  const hideNavbar = ["/", "/login", "/signup"].includes(location.pathname);
+  const path = location.pathname;
+
+  const hideNavbar =
+    path === "/" ||
+    path === "/login" ||
+    path === "/signup" ||
+    path.startsWith("/category/"); 
 
   return (
     <>
@@ -31,11 +43,11 @@ function AppWrapper() {
         <Route path="/help" element={<Help />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/category/:category" element={<CategoryPage />} />
       </Routes>
     </>
   );
 }
-
 
 function App() {
   return (
