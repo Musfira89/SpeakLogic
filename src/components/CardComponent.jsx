@@ -85,7 +85,7 @@ const CardComponent = ({ item, index }) => {
               <h3 className="text-[24px] font-bold text-gray-900 mb-2">
                 {item.title}
               </h3>
-              <p className="text-sm text-gray-600 mb-6">{item.description}</p>
+              <p className="text-sm text-gray-600 mb-4">{item.description}</p>
               <button
                 onClick={handleClick}
                 className="bg-[#3d960d] text-white text-sm px-6 py-2 rounded-md hover:bg-[#4ab80f] transition-all"

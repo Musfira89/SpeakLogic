@@ -76,7 +76,10 @@ const SearchHandler = () => {
           onChange={handleSearchChange}
           className="flex-1 outline-none bg-transparent text-sm placeholder-gray-500 px-2"
         />
-        <FaSearch className="absolute right-3 text-[#41aa09] cursor-pointer" size={14} />
+        <FaSearch
+          className="absolute right-3 text-[#41aa09] cursor-pointer"
+          size={14}
+        />
       </div>
 
       {dropdownOpen && (
@@ -95,7 +98,9 @@ const SearchHandler = () => {
               </div>
             ))
           ) : (
-            <div className="px-4 py-2 text-xs text-gray-500">No categories found</div>
+            <div className="px-4 py-2 text-xs text-gray-500">
+              No categories found
+            </div>
           )}
         </div>
       )}
