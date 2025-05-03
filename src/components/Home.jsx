@@ -5,8 +5,8 @@ import Features from "./Features";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Section from "./Section";
-import ThemeSection from "./ThemeSection";
 import Testimonial from "./Testimonial";
+import About from "./About";
 
 const Home = () => {
   return (
@@ -15,9 +15,10 @@ const Home = () => {
       <Header />
       <CommunicationSection />
       <Section />
+      <About/>
       <Features />
       <Testimonial/>
-      <ThemeSection />
+      {/* <ThemeSection /> */}
       <Footer />
     </>
   );

@@ -90,17 +90,52 @@ const Software = () => {
           </div>
         </div>
 
-        {/* Problem Heading and Breadcrumb */}
-        <div className="text-center mt-16">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">SOFTWARE</h1>
-          <nav className="text-sm font-medium text-[#3c970b] mb-6">
-            <Link to="/" className="hover:underline">
+        <motion.div
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+          className="relative isolate overflow-hidden px-6 sm:px-12 text-center"
+        >
+          <h1 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-[#3c970b] tracking-wide drop-shadow-md mt-10 sm:mt-18">
+            Software
+          </h1>
+
+          {/* Subtext */}
+          <p className="mt-4 max-w-[30rem] mx-auto text-sm text-gray-600 mb-6 ">
+            Effective softwares begin with clear understanding and purposeful
+            action.
+          </p>
+
+          {/* Modern Breadcrumb with Glassmorphism */}
+          <div className="mt-6 flex justify-center space-x-2 text-sm ">
+            <Link
+              to="/"
+              className="flex items-center gap-1 px-4 py-1.5 rounded-full backdrop-blur-sm bg-white/60 text-[#3c970b] shadow-sm border border-[#d9f5cb] hover:bg-white/80 transition"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 12l2-2m0 0l7-7 7 7m-9 2v8m4 0v-6m4 6h-8"
+                />
+              </svg>
               Home
             </Link>
-            <span className="mx-2">&gt;</span>
-            <span>Software</span>
-          </nav>
-        </div>
+
+            <span className="flex items-center text-gray-400">/</span>
+
+            <span className="px-4 py-1.5 rounded-full backdrop-blur-sm bg-white/60 text-gray-800 shadow-sm border border-[#e5e5e5]">
+              Software
+            </span>
+          </div>
+        </motion.div>
 
         {/* Instructions Section */}
         <section className="px-6 sm:px-6 md:px-10 xl:px-16 py-16 bg-[#F9FAFB] text-gray-800">

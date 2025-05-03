@@ -32,14 +32,14 @@ const Features = () => {
   const renderCard = (section, index) => (
     <div
       key={index}
-      className="relative group flex flex-col rounded-2xl shadow-lg border border-gray-200 bg-white transition-all duration-300 hover:shadow-2xl"
+      className="relative group flex flex-col rounded-3xl shadow-lg border border-gray-200 bg-white transition-all duration-300 hover:shadow-2xl"
     >
       {/* Image Section */}
       <div className="relative w-full">
         <img
           src={section.image}
           alt={section.heading}
-          className="w-full h-full object-cover rounded-t-2xl"
+          className="w-full h-80  object-cover rounded-t-3xl"
         />
         <span
           className="absolute top-0 left-0 bg-[#47be07] text-white text-[17px] px-3 py-2 font-bold shadow-md"
@@ -135,7 +135,7 @@ const Features = () => {
       </div>
 
       {/* Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 ">
         {(activeTab === "Download App" ? appSections : limitedSections).map(
           (section, index) => renderCard(section, index)
         )}

@@ -17,6 +17,7 @@ import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import CategoryPage from "./pages/CategoryPage";
+import Contact from "./pages/Contact";
 
 function AppWrapper() {
   const location = useLocation();
@@ -26,7 +27,8 @@ function AppWrapper() {
     path === "/" ||
     path === "/login" ||
     path === "/signup" ||
-    path.startsWith("/category/"); 
+    path === "/contact" ||
+    path.startsWith("/category/");
 
   return (
     <>
@@ -41,6 +43,8 @@ function AppWrapper() {
         <Route path="/softwares" element={<Software />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/help" element={<Help />} />
+        <Route path="/contact" element={<Contact />} />
+
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/category/:category" element={<CategoryPage />} />

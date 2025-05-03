@@ -1,4 +1,3 @@
-"use client";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -29,26 +28,57 @@ const Problems = () => {
   return (
     <>
       <div className="min-h-screen bg-gradient-to-b from-white via-[#f7f7f7] to-white text-gray-800 font-sans">
-        {/* Heading and Breadcrumb */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
           animate="visible"
-          className="text-center mt-40 mb-12 md:mb-20"
+          className="relative isolate overflow-hidden pt-28 pb-12 px-6 sm:px-12 text-center"
         >
-          <h1 className="text-2xl md:text-4xl font-extrabold text-gray-800 tracking-wide mb-3 drop-shadow-md">
-            PROBLEM
+          {/* Decorative background blobs */}
+          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-white via-[#f5fdf2] to-white" />
+          <div className="absolute top-[-6rem] left-1/2 transform -translate-x-1/2 z-0 blur-3xl opacity-40 pointer-events-none">
+            <div className="w-[400px] h-[400px] bg-[#bdf4a4] rounded-full mix-blend-multiply"></div>
+          </div>
+
+          <h1 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-[#3c970b] tracking-wide drop-shadow-md mt-10 sm:mt-18">
+            Problem
           </h1>
-          <nav className="text-xs font-semibold text-[#3c970b] flex justify-center items-center gap-1">
+
+          {/* Subtext */}
+          <p className="mt-4 max-w-[30rem] mx-auto text-sm text-gray-600 mb-6 ">
+            Clarity is the first step to resolution. Explore the causes,
+            misalignments, and key communication gaps we often overlook.
+          </p>
+
+          {/* Modern Breadcrumb with Glassmorphism */}
+          <div className="mt-6 flex justify-center space-x-2 text-sm ">
             <Link
               to="/"
-              className="hover:underline hover:text-[#2e7c08] transition-colors duration-300"
+              className="flex items-center gap-1 px-4 py-1.5 rounded-full backdrop-blur-sm bg-white/60 text-[#3c970b] shadow-sm border border-[#d9f5cb] hover:bg-white/80 transition"
             >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 12l2-2m0 0l7-7 7 7m-9 2v8m4 0v-6m4 6h-8"
+                />
+              </svg>
               Home
             </Link>
-            <span className="text-gray-400">/</span>
-            <span>Problems</span>
-          </nav>
+
+            <span className="flex items-center text-gray-400">/</span>
+
+            <span className="px-4 py-1.5 rounded-full backdrop-blur-sm bg-white/60 text-gray-800 shadow-sm border border-[#e5e5e5]">
+              Problems
+            </span>
+          </div>
         </motion.div>
 
         {/* Carousel Section */}
@@ -91,55 +121,54 @@ const Problems = () => {
           ))}
         </div>
 
-      {/* New Section */}
-<div className="w-[90%] max-w-6xl mx-auto mt-32 mb-16 md:mb-32 flex flex-col md:flex-row items-center gap-20">
-  {/* Left Text Side */}
-  <motion.div
-    variants={fadeInUp}
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true }}
-    className="flex-1 w-full md:w-[60%] justify-between"
-  >
-    <h2 className="text-2xl sm:text-2xl md:text-4xl font-bold text-gray-900 leading-tight mb-6">
-      The Importance of{" "}
-      <span className="text-[#3c970b]">Clear Communication.</span>
-    </h2>
-    <p className="text-sm text-gray-600 mb-4">
-      Communication drives everything — without it, collaboration and
-      life itself would collapse. When discussing tasks like buying a
-      house, it's crucial to separate the action and the communication
-      behind it.
-    </p>
-    <p className="text-sm text-gray-600 mb-5 ">
-      Both <span className="font-semibold">external communication</span>{" "}
-      (spoken or written) and{" "}
-      <span className="font-semibold">internal communication</span>
-      (our thoughts) must align clearly. Otherwise, errors can occur,
-      leading to flawed results.
-    </p>
-    <p className="text-sm text-gray-600">
-      To perform any function without errors, we must first ensure our
-      communication is accurate, precise, and aligned both externally
-      and internally.
-    </p>
-  </motion.div>
+        {/* New Section */}
+        <div className="w-[90%] max-w-6xl mx-auto mt-32 mb-16 md:mb-32 flex flex-col md:flex-row items-center gap-20">
+          {/* Left Text Side */}
+          <motion.div
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex-1 w-full md:w-[60%] justify-between"
+          >
+            <h2 className="text-2xl sm:text-2xl md:text-4xl font-bold text-gray-900 leading-tight mb-6">
+              The Importance of{" "}
+              <span className="text-[#3c970b]">Clear Communication.</span>
+            </h2>
+            <p className="text-sm text-gray-600 mb-4">
+              Communication drives everything — without it, collaboration and
+              life itself would collapse. When discussing tasks like buying a
+              house, it's crucial to separate the action and the communication
+              behind it.
+            </p>
+            <p className="text-sm text-gray-600 mb-5 ">
+              Both <span className="font-semibold">external communication</span>{" "}
+              (spoken or written) and{" "}
+              <span className="font-semibold">internal communication</span>
+              (our thoughts) must align clearly. Otherwise, errors can occur,
+              leading to flawed results.
+            </p>
+            <p className="text-sm text-gray-600">
+              To perform any function without errors, we must first ensure our
+              communication is accurate, precise, and aligned both externally
+              and internally.
+            </p>
+          </motion.div>
 
-  {/* Right Image Side */}
-  <motion.div
-    className="rounded-3xl overflow-hidden bg-gray-50 bg-opacity-60 backdrop-blur-md w-full md:w-[40%]"
-    initial={{ opacity: 0, scale: 0.95 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 1 }}
-  >
-    <motion.img
-      src={img}
-      alt="Solution Flow"
-      className="w-full h-full object-cover transform transition duration-700 hover:scale-105"
-    />
-  </motion.div>
-</div>
-
+          {/* Right Image Side */}
+          <motion.div
+            className="rounded-3xl overflow-hidden bg-gray-50 bg-opacity-60 backdrop-blur-md w-full md:w-[40%]"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+          >
+            <motion.img
+              src={img}
+              alt="Solution Flow"
+              className="w-full h-full object-cover transform transition duration-700 hover:scale-105"
+            />
+          </motion.div>
+        </div>
       </div>
 
       <Footer />

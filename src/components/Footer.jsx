@@ -27,7 +27,7 @@ const Footer = () => {
     { label: "My Account", path: "/login" },
     { label: "Help", path: "/help" },
     { label: "SiteMap", path: "/sitemap" },
-    { label: "Contact Us", path: "/contact-us" },
+    { label: "Contact Us", path: "/contact" },
   ];
 
   return (

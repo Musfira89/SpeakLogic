@@ -1,5 +1,4 @@
-"use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import { motion } from "framer-motion";
@@ -8,6 +7,9 @@ import Footer from "../components/Footer";
 
 const Store = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const inputRef = useRef(null);
+  const dropdownRef = useRef(null);
 
   const books = [
     {
@@ -31,16 +33,32 @@ const Store = () => {
     book.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target) &&
+        inputRef.current &&
+        !inputRef.current.contains(e.target)
+      ) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <>
-      {/* Background gradient */}
+      {/* Background Gradient */}
       <div className="min-h-screen from-[#47be07] via-[#3e9e0a] to-[#47be07] relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#e0ffe6] via-transparent to-[#eaffd9] opacity-40 pointer-events-none z-0" />
 
         {/* Header Section */}
         <div className="relative bg-gradient-to-r from-[#47be07] via-[#3e9e0a] to-[#47be07] py-24 px-4 sm:px-6 md:px-16 text-white text-center overflow-hidden z-10 mb-11">
           <div className="relative z-10">
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-wide mb-3 text-shadow-lg mt-16">
+            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-wide mb-3 text-shadow-lg mt-16">
               STORE
             </h1>
             <nav className="text-sm sm:text-base font-medium text-white flex justify-center space-x-2">
@@ -53,19 +71,46 @@ const Store = () => {
           </div>
         </div>
 
-        {/* Search Bar */}
+        {/* Search Bar with Dropdown */}
         <div className="relative z-10 px-4 sm:px-6 md:px-12 xl:px-24 py-8 mb-5">
-          <div className="max-w-xl mx-auto flex items-center bg-white rounded-md shadow-lg ring-1 ring-gray-300 hover:ring-[#47be07] transition-all duration-300">
-            <input
-              type="text"
-              placeholder="Search for books..."
-              className="w-full px-6 py-4 rounded-md focus:outline-none focus:ring-2 focus:ring-[#47be07] text-sm text-gray-700 placeholder-gray-400 bg-transparent"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <div className="bg-[#47be07] p-4 rounded-r-md cursor-pointer transition-all ">
-              <FiSearch className="text-white text-xl" />
+          <div className="max-w-xl mx-auto relative">
+            <div className="flex items-center bg-white rounded-md shadow-lg ring-1 ring-gray-300 hover:ring-[#47be07] transition-all duration-300">
+              <input
+                ref={inputRef}
+                type="text"
+                placeholder="Search for books..."
+                className="w-full px-6 py-4 rounded-md focus:outline-none focus:ring-2 focus:ring-[#47be07] text-sm text-gray-700 placeholder-gray-400 bg-transparent"
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setDropdownOpen(true);
+                }}
+              />
+              <div className="bg-[#47be07] p-4 rounded-r-md cursor-pointer transition-all">
+                <FiSearch className="text-white text-xl" />
+              </div>
             </div>
+
+            {/* Filtered Dropdown */}
+            {dropdownOpen && searchQuery && filteredBooks.length > 0 && (
+              <div
+                ref={dropdownRef}
+                className="absolute top-full mt-1 left-0 right-0 bg-white shadow-lg rounded-md border border-gray-200 z-50 max-h-60 overflow-auto"
+              >
+                {filteredBooks.map((book, idx) => (
+                  <div
+                    key={idx}
+                    className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => {
+                      setSearchQuery(book.title);
+                      setDropdownOpen(false);
+                    }}
+                  >
+                    {book.title}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
@@ -79,7 +124,6 @@ const Store = () => {
                 whileHover={{ rotateY: 5, rotateX: 5, scale: 1.04 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                {/* Book Image */}
                 <div className="relative h-48 w-full overflow-hidden rounded-xl mb-4 flex items-center justify-center bg-[#f8fff3]">
                   <img
                     src={image}
@@ -87,8 +131,6 @@ const Store = () => {
                     className="h-full object-contain transition-transform duration-500 hover:scale-110"
                   />
                 </div>
-
-                {/* Book Details */}
                 <div className="text-center">
                   <h3 className="text-lg font-semibold text-gray-800 mb-1">
                     {book.title}
@@ -106,9 +148,9 @@ const Store = () => {
               </motion.div>
             ))
           ) : (
-            <div className="col-span-full text-center text-lg text-gray-600">
-              No books found.
-            </div>
+            <p className="text-center text-gray-600 text-sm col-span-full">
+              No results found.
+            </p>
           )}
         </div>
       </div>
