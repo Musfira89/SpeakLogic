@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import {
   FaFacebookF,
   FaInstagram,
@@ -7,11 +6,12 @@ import {
   FaXTwitter,
 } from "react-icons/fa6";
 import logo from "../../public/Artboard 1.png";
+import { HashLink as Link } from "react-router-hash-link";
 
 const Footer = () => {
   const quickLinks1 = [
-    { label: "Home", path: "/" },
-    { label: "About us", path: "/about-us" },
+    { label: "Home", path: "/#header" },
+    { label: "About us", path: "/#about-us" },
     { label: "Solution", path: "/solution" },
     { label: "Software", path: "/softwares" },
     { label: "Books", path: "/books" },

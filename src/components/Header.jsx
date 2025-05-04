@@ -37,7 +37,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="bg-gradient-to-br from-[#f0fff0] to-[#f8fcf8] py-6 px-6 md:px-16 lg:px-32 transition-all overflow-hidden ">
+    <section id="header" className="bg-gradient-to-br from-[#f0fff0] to-[#f8fcf8] py-6 px-6 md:px-16 lg:px-32 transition-all overflow-hidden ">
       <div className="max-w-7xl mx-auto flex flex-col items-center justify-center gap-22 text-center">
         {/* Text Section */}
         <motion.div

@@ -59,7 +59,7 @@ const Software = () => {
     <>
       <div className="min-h-screen bg-[#F9FAFB] text-gray-800 font-sans">
         {/* Carousel */}
-        <div className="relative w-full overflow-hidden ">
+        <div className="relative w-full overflow-hidden  py-16 sm:py-12 ">
           {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#3d960d]/50 to-transparent z-10 pointer-events-none" />
 
@@ -96,21 +96,21 @@ const Software = () => {
           animate="visible"
           className="relative isolate overflow-hidden px-6 sm:px-12 text-center"
         >
-          <h1 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-[#3c970b] tracking-wide drop-shadow-md mt-10 sm:mt-18">
+          <h1 className="text-3xl md:text-5xl font-extrabold text-[#3c970b] tracking-wide drop-shadow-md md:mt-4">
             Software
           </h1>
 
           {/* Subtext */}
-          <p className="mt-4 max-w-[30rem] mx-auto text-sm text-gray-600 mb-6 ">
-            Effective softwares begin with clear understanding and purposeful
+          <p className="mt-4 md:max-w-[30rem] max-w-[20rem] mx-auto text-xs md:text-sm text-gray-600 mb-6  leading-relaxed">
+            Effective software begin with clear understanding and purposeful
             action.
           </p>
 
           {/* Modern Breadcrumb with Glassmorphism */}
-          <div className="mt-6 flex justify-center space-x-2 text-sm ">
+          <div className="mt-6 flex justify-center space-x-2 text-xs md:text-sm ">
             <Link
               to="/"
-              className="flex items-center gap-1 px-4 py-1.5 rounded-full backdrop-blur-sm bg-white/60 text-[#3c970b] shadow-sm border border-[#d9f5cb] hover:bg-white/80 transition"
+              className="flex items-center gap-1 px-6 py-1.5 rounded-full backdrop-blur-sm bg-white/60 text-[#3c970b] shadow-sm border border-[#d9f5cb] hover:bg-white/80 transition"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -141,15 +141,15 @@ const Software = () => {
         <section className="px-6 sm:px-6 md:px-10 xl:px-16 py-16 bg-[#F9FAFB] text-gray-800">
           <div className="max-w-5xl mx-auto text-sm space-y-12">
             {/* Heading */}
-            <h2 className="text-3xl font-extrabold text-left text-[#3d960d] mb-10">
+            <h2 className="md:text-3xl text-2xl font-extrabold text-left text-[#3d960d] mb-6">
               Installation Instructions
             </h2>
 
             <div className="space-y-8">
               {/* Download Software */}
               <div className="space-y-4">
-                <p className="leading-relaxed text-sm text-left">
-                  <span className="font-semibold text-[#3e9e0a] text-md">
+                <p className="leading-relaxed md:text-sm text-xs text-left">
+                  <span className="font-semibold text-[#3e9e0a] md:text-md text-sm">
                     Download Software:
                   </span>{" "}
                   Understand the relationship between information and
@@ -161,8 +161,8 @@ const Software = () => {
 
               {/* Speak Logic Information Analysis */}
               <div className="space-y-4">
-                <p className="leading-relaxed text-sm text-left">
-                  <span className="font-semibold text-[#3e9e0a]">
+                <p className="leading-relaxed md:text-sm text-xs text-left">
+                  <span className="font-semibold text-[#3e9e0a] md:text-md text-sm">
                     Speak Logic Information Analysis:
                   </span>{" "}
                   This tool allows us to manage the information presented to us.
@@ -181,8 +181,8 @@ const Software = () => {
 
               {/* New Features */}
               <div className="space-y-4">
-                <p className="leading-relaxed text-sm text-left">
-                  <span className="font-semibold text-[#3e9e0a]">
+                <p className="leading-relaxed md:text-sm text-xs text-left">
+                  <span className="font-semibold text-[#3e9e0a] md:text-md text-sm">
                     New Features:
                   </span>{" "}
                   Version 2012 includes additional features such as identifying
@@ -193,8 +193,8 @@ const Software = () => {
 
               {/* Installation Instructions */}
               <div className="space-y-4">
-                <p className="leading-relaxed text-sm text-left">
-                  <span className="font-semibold text-[#3e9e0a]">
+                <p className="leading-relaxed md:text-sm text-xs text-left">
+                  <span className="font-semibold text-[#3e9e0a] md:text-md text-sm">
                     Installation Instructions:
                   </span>{" "}
                   After downloading, if the application doesn't open, unzip the

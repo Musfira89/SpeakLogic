@@ -6,7 +6,7 @@ const ThemeSection = () => {
     "M44.8,-65.4C58.2,-56.3,69.5,-43.6,74.3,-29.4C79.1,-15.3,77.5,-0.1,70.6,12.9C63.6,25.9,51.3,36.7,38.3,46.1C25.3,55.5,12.6,63.4,-0.3,63.8C-13.1,64.2,-26.1,57.2,-38.6,48C-51.1,38.9,-63.2,27.7,-67.5,13.8C-71.8,-0.2,-68.2,-16.9,-59.5,-30.3C-50.8,-43.8,-36.9,-53.9,-22.2,-61.3C-7.4,-68.7,8.2,-73.5,22.7,-70.3C37.3,-67.1,52.6,-55.5,44.8,-65.4Z";
 
   return (
-    <section className="my-16 px-6 mb-32">
+    <section id="about-us" className="my-16 px-6 mb-32">
       <div className="relative bg-[#379f00] rounded-[2rem] py-12 px-6 md:px-28 text-white max-w-7xl mx-auto shadow-2xl overflow-hidden backdrop-blur-md">
         {/* --- Floating Blobs --- */}
         <svg

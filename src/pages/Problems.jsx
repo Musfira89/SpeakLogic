@@ -40,21 +40,21 @@ const Problems = () => {
             <div className="w-[400px] h-[400px] bg-[#bdf4a4] rounded-full mix-blend-multiply"></div>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-[#3c970b] tracking-wide drop-shadow-md mt-10 sm:mt-18">
+          <h1 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-[#3c970b] tracking-wide drop-shadow-md mt-4 md:mt-18">
             Problem
           </h1>
 
           {/* Subtext */}
-          <p className="mt-4 max-w-[30rem] mx-auto text-sm text-gray-600 mb-6 ">
+          <p className="mt-4 md:max-w-[30rem] max-w-[20rem] mx-auto text-xs md:text-sm text-gray-600 mb-6 ">
             Clarity is the first step to resolution. Explore the causes,
             misalignments, and key communication gaps we often overlook.
           </p>
 
           {/* Modern Breadcrumb with Glassmorphism */}
-          <div className="mt-6 flex justify-center space-x-2 text-sm ">
+          <div className="mt-6 flex justify-center space-x-2 text-xs md:text-sm ">
             <Link
               to="/"
-              className="flex items-center gap-1 px-4 py-1.5 rounded-full backdrop-blur-sm bg-white/60 text-[#3c970b] shadow-sm border border-[#d9f5cb] hover:bg-white/80 transition"
+              className="flex items-center gap-1 px-6 py-1.5 rounded-full backdrop-blur-sm bg-white/60 text-[#3c970b] shadow-sm border border-[#d9f5cb] hover:bg-white/80 transition"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +76,7 @@ const Problems = () => {
             <span className="flex items-center text-gray-400">/</span>
 
             <span className="px-4 py-1.5 rounded-full backdrop-blur-sm bg-white/60 text-gray-800 shadow-sm border border-[#e5e5e5]">
-              Problems
+              Solution
             </span>
           </div>
         </motion.div>
@@ -122,7 +122,7 @@ const Problems = () => {
         </div>
 
         {/* New Section */}
-        <div className="w-[90%] max-w-6xl mx-auto mt-32 mb-16 md:mb-32 flex flex-col md:flex-row items-center gap-20">
+        <div className="w-[90%] max-w-6xl mx-auto md:mt-32 mt-22 mb-16 md:mb-32 flex flex-col md:flex-row items-center gap-20">
           {/* Left Text Side */}
           <motion.div
             variants={fadeInUp}
@@ -135,20 +135,20 @@ const Problems = () => {
               The Importance of{" "}
               <span className="text-[#3c970b]">Clear Communication.</span>
             </h2>
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="md:text-sm text-xs text-gray-600 mb-4">
               Communication drives everything — without it, collaboration and
               life itself would collapse. When discussing tasks like buying a
               house, it's crucial to separate the action and the communication
               behind it.
             </p>
-            <p className="text-sm text-gray-600 mb-5 ">
+            <p className="md:text-sm text-xs text-gray-600 mb-5 ">
               Both <span className="font-semibold">external communication</span>{" "}
               (spoken or written) and{" "}
               <span className="font-semibold">internal communication</span>
               (our thoughts) must align clearly. Otherwise, errors can occur,
               leading to flawed results.
             </p>
-            <p className="text-sm text-gray-600">
+            <p className="md:text-sm text-xs text-gray-600">
               To perform any function without errors, we must first ensure our
               communication is accurate, precise, and aligned both externally
               and internally.

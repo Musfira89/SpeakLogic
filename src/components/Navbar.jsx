@@ -30,7 +30,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`font-sora py-3 sm:py-5 px-4 md:px-12 rounded-full max-w-[95%] md:max-w-[1200px] mx-auto fixed top-4 left-0 right-0 z-50 flex flex-wrap justify-between items-center gap-4 md:gap-8 transition-all duration-300 ${
+      className={`font-sora py-2 sm:py-4 px-4 md:px-12 rounded-full max-w-[95%] md:max-w-[1200px] mx-auto fixed top-4 left-0 right-0 z-50 flex flex-wrap justify-between items-center gap-4 md:gap-8 transition-all duration-300 ${
         scrolled
           ? "bg-white/70 backdrop-blur-md shadow-xl border border-gray-200"
           : "bg-white shadow-md"
@@ -41,7 +41,7 @@ const Navbar = () => {
         <img
           src={logo}
           alt="SpeakLogic Logo"
-          className="h-10 sm:h-[50px] md:h-[55px] w-auto object-contain transition-all duration-300"
+          className="h-8 sm:h-[30px] md:h-[55px] w-auto object-contain transition-all duration-300"
         />
       </div>
 
@@ -67,9 +67,7 @@ const Navbar = () => {
           <Link to="/softwares" className="hover:text-[#41aa09] transition">
             Software
           </Link>
-          <Link to="/softwares" className="hover:text-[#41aa09] transition">
-            Apps
-          </Link>
+
           <Link to="/store" className="hover:text-[#41aa09] transition">
             Store
           </Link>
@@ -137,37 +135,60 @@ const Navbar = () => {
         className="sm:hidden text-gray-800"
         onClick={() => setMenuOpen(!menuOpen)}
       >
-        {menuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
+        {menuOpen ? <FaTimes size={16} /> : <FaBars size={16} />}
       </button>
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="absolute top-[80px] left-4 right-4 bg-white shadow-lg rounded-2xl py-5 px-6 flex flex-col space-y-4 sm:hidden z-40">
-          <Link to="/" className="text-[#41aa09] font-medium">
+        <div className="absolute top-[80px] text-xs left-4 right-4 bg-white shadow-lg rounded-2xl py-5 px-6 flex flex-col space-y-4 sm:hidden z-40">
+          <Link
+            to="/"
+            className="text-[#41aa09] font-medium"
+            onClick={() => setMenuOpen(false)}
+          >
             Home
           </Link>
-          <Link to="/problem">Problem</Link>
-          <Link to="/solution">Solution</Link>
-          <Link to="/books">Books</Link>
-          <Link to="/softwares">App</Link>
-          <Link to="/store">Store</Link>
-          <Link to="/videos">Videos</Link>
+          <Link to="/problem" onClick={() => setMenuOpen(false)}>
+            Problem
+          </Link>
+          <Link to="/solution" onClick={() => setMenuOpen(false)}>
+            Solution
+          </Link>
+          <Link to="/books" onClick={() => setMenuOpen(false)}>
+            Books
+          </Link>
+          <Link to="/softwares" onClick={() => setMenuOpen(false)}>
+            Software
+          </Link>
+          <Link to="/store" onClick={() => setMenuOpen(false)}>
+            Store
+          </Link>
+          <Link to="/videos" onClick={() => setMenuOpen(false)}>
+            Videos
+          </Link>
+
           {/* Mobile Search Bar */}
           <div className="relative w-full">
             <SearchHandler />
           </div>
-          <Link
-            to="/login"
-            className="text-[#41aa09] underline underline-offset-2 decoration-[#41aa09] font-medium"
-          >
-            Login
-          </Link>
-          <Link
-            to="/signup"
-            className="text-white bg-[#41aa09] rounded-md px-4 py-2 text-center"
-          >
-            Signup
-          </Link>
+
+          <div className="flex space-x-2">
+            <Link
+              to="/login"
+              className="text-[#41aa09] border border-[#41aa09] bg-white rounded-md px-11 py-2 text-center font-medium"
+              onClick={() => setMenuOpen(false)}
+            >
+              Login
+            </Link>
+
+            <Link
+              to="/signup"
+              className="text-white bg-[#41aa09] rounded-md px-11 py-2 text-center font-medium"
+              onClick={() => setMenuOpen(false)}
+            >
+              Signup
+            </Link>
+          </div>
         </div>
       )}
     </nav>
