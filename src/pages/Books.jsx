@@ -138,114 +138,98 @@ const Books = () => {
             ))}
           </motion.div>
         </div>
+{/* Tabs and Book Cards Section */}
+<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-18 md:py-28">
 
-        {/* Tabs */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 md:py-28 py-18">
-          <div className="flex flex-col md:flex-row gap-8">
-            {/* Left Tabs */}
-            <div className="md:w-1/4">
-              <div className="sticky top-20 flex md:flex-col gap-4">
-                {TAB_OPTIONS.map((tab) => (
-                  <motion.button
-                    key={tab}
-                    onClick={() => setActiveTab(tab)}
-                    whileTap={{ scale: 0.97 }}
-                    className={`px-5 md:py-3 py-2 rounded-lg text-xs md:text-sm font-semibold transition-all duration-300 shadow-sm
-                    ${
-                      activeTab === tab
-                        ? "bg-[#2e7c0e] text-white"
-                        : "bg-gray-100 text-gray-800 hover:bg-gray-200"
-                    }`}
-                  >
-                    {tab} Books
-                  </motion.button>
-                ))}
-              </div>
+  {/* Top Centered Tabs */}
+  <div className="flex justify-center flex-wrap gap-4 mb-10">
+    {TAB_OPTIONS.map((tab) => (
+      <motion.button
+        key={tab}
+        onClick={() => setActiveTab(tab)}
+        whileTap={{ scale: 0.97 }}
+        className={`px-5 py-2 md:py-3 rounded-lg text-xs md:text-sm font-semibold transition-all duration-300 shadow-sm
+          ${
+            activeTab === tab
+              ? "bg-[#2e7c0e] text-white"
+              : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+          }`}
+      >
+        {tab} Books
+      </motion.button>
+    ))}
+  </div>
+
+  {/* Books Grid */}
+  <motion.div
+    layout
+    className="grid grid-cols-1 md:grid-cols-3 gap-8 px-8"
+  >
+    <AnimatePresence>
+      {filteredSections.map((section, index) => (
+        <motion.div
+          key={section.number}
+          layout
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.4 }}
+          className="relative group flex flex-col max-w-sm mx-auto overflow-hidden rounded-3xl shadow-lg bg-white transition-all duration-300 hover:shadow-2xl"
+        >
+          {/* Image */}
+          <div className="relative w-full">
+            <img
+              src={section.image}
+              alt={section.heading}
+              className="w-full md:h-80 h-60 object-cover rounded-t-2xl"
+            />
+            <span className="absolute top-0 left-0 bg-[#47be07] text-white text-[16px] px-3 py-1.5 font-semibold rounded-br-[20px] shadow-md">
+              #{section.number}
+            </span>
+
+            {/* Action Buttons */}
+            <div className="absolute top-4 right-4 flex flex-col gap-2 z-10">
+              {[
+                { icon: <FaDownload />, type: "download", label: "Download" },
+                { icon: <FaPrint />, type: "print", label: "Print" },
+                { icon: <FaInfoCircle />, type: "info", label: "Details" },
+                { icon: <FaChevronDown />, type: "type", label: "More" },
+              ].map(({ icon, type, label }) => (
+                <IconButton
+                  key={type}
+                  icon={icon}
+                  onClick={() => openModal(type, index)}
+                  label={label}
+                />
+              ))}
             </div>
-
-            {/* Right Cards */}
-            <motion.div
-              layout
-              className="grid grid-cols-1 md:grid-cols-2 gap-8 px-8"
-            >
-              <AnimatePresence>
-                {filteredSections.map((section, index) => (
-                  <motion.div
-                    key={section.number}
-                    layout
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.4 }}
-                    className="relative group flex flex-col max-w-sm mx-auto overflow-hidden rounded-3xl shadow-lg bg-white transition-all duration-300 hover:shadow-2xl"
-                  >
-                    {/* Image */}
-                    <div className="relative w-full">
-                      <img
-                        src={section.image}
-                        alt={section.heading}
-                        className="w-full md:h-80 h-60 object-cover rounded-t-2xl"
-                      />
-                      <span className="absolute top-0 left-0 bg-[#47be07] text-white text-[16px] px-3 py-1.5 font-semibold rounded-br-[20px] shadow-md">
-                        #{section.number}
-                      </span>
-
-                      {/* Action Buttons */}
-                      <div className="absolute top-4 right-4 flex flex-col gap-2 z-10">
-                        {[
-                          {
-                            icon: <FaDownload />,
-                            type: "download",
-                            label: "Download",
-                          },
-                          { icon: <FaPrint />, type: "print", label: "Print" },
-                          {
-                            icon: <FaInfoCircle />,
-                            type: "info",
-                            label: "Details",
-                          },
-                          {
-                            icon: <FaChevronDown />,
-                            type: "type",
-                            label: "More",
-                          },
-                        ].map(({ icon, type, label }) => (
-                          <IconButton
-                            key={type}
-                            icon={icon}
-                            onClick={() => openModal(type, index)}
-                            label={label}
-                          />
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Text Content */}
-                    <div className="px-6 py-5 bg-white">
-                      <h3 className="text-md font-bold text-gray-800 mb-3">
-                        {section.heading}
-                      </h3>
-                      <p className="text-gray-600 text-xs leading-relaxed">
-                        {expandedIndex === index
-                          ? section.description
-                          : `${section.description.slice(0, 100)}... `}
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleExpand(index);
-                          }}
-                          className="text-[#47be07] underline font-medium text-xs ml-1"
-                        >
-                          {expandedIndex === index ? "Show Less" : "Show More"}
-                        </button>
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </motion.div>
           </div>
-        </div>
+
+          {/* Text Content */}
+          <div className="px-6 py-5 bg-white">
+            <h3 className="text-md font-bold text-gray-800 mb-3">
+              {section.heading}
+            </h3>
+            <p className="text-gray-600 text-xs leading-relaxed">
+              {expandedIndex === index
+                ? section.description
+                : `${section.description.slice(0, 100)}... `}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleExpand(index);
+                }}
+                className="text-[#47be07] underline font-medium text-xs ml-1"
+              >
+                {expandedIndex === index ? "Show Less" : "Show More"}
+              </button>
+            </p>
+          </div>
+        </motion.div>
+      ))}
+    </AnimatePresence>
+  </motion.div>
+</div>
 
         <Modal modal={modal} closeModal={closeModal} />
       </div>

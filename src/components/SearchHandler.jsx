@@ -11,11 +11,13 @@ const SearchHandler = () => {
   const inputRef = useRef(null); // Reference to the search input field
 
   const categories = [
+    { name: "All", path: "/category/all" },
     { name: "Books", path: "/category/books" },
-    { name: "Software", path: "/category/software" },
-    { name: "Apps", path: "/category/apps" },
-    { name: "Math Books", path: "/category/math-books" },
     { name: "Non Math Books", path: "/category/non-math-books" },
+    { name: "Math Books", path: "/category/math-books" },
+    { name: "Software", path: "/category/software" },
+    { name: "Videos", path: "/category/videos" },
+    { name: "Anything", path: "/category/anything" },
   ];
 
   // Filter categories based on the search term

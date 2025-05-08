@@ -1,13 +1,18 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
+import { FaInfoCircle } from "react-icons/fa";
 import { motion } from "framer-motion";
 import image from "../assets/download.png";
 import Footer from "../components/Footer";
+import InquireFormModal from "../Modal/InquireFormModal";
 
 const Store = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedBook, setSelectedBook] = useState(null);
+
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
 
@@ -33,29 +38,22 @@ const Store = () => {
     book.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Close dropdown on outside click
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(e.target) &&
-        inputRef.current &&
-        !inputRef.current.contains(e.target)
-      ) {
-        setDropdownOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  const IconButton = ({ icon, onClick, label }) => (
+    <button
+      onClick={onClick}
+      aria-label={label}
+      title={label}
+      className="w-10 h-10 rounded-full bg-[#47be07] text-white flex items-center justify-center hover:bg-[#3aa506] shadow focus:outline-none focus:ring-2 focus:ring-[#47be07] cursor-pointer"
+    >
+      {icon}
+    </button>
+  );
 
   return (
     <>
-      {/* Background Gradient */}
       <div className="min-h-screen from-[#47be07] via-[#3e9e0a] to-[#47be07] relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#e0ffe6] via-transparent to-[#eaffd9] opacity-40 pointer-events-none z-0" />
 
-        {/* Header Section */}
         <div className="relative bg-gradient-to-r from-[#47be07] via-[#3e9e0a] to-[#47be07] py-24 px-4 sm:px-6 md:px-16 text-white text-center overflow-hidden z-10 mb-11">
           <div className="relative z-10">
             <h1 className="text-4xl sm:text-5xl font-extrabold tracking-wide mb-3 text-shadow-lg mt-16">
@@ -71,7 +69,6 @@ const Store = () => {
           </div>
         </div>
 
-        {/* Search Bar with Dropdown */}
         <div className="relative z-10 px-4 sm:px-6 md:px-12 xl:px-24 py-8 mb-5">
           <div className="max-w-xl mx-auto relative">
             <div className="flex items-center bg-white rounded-md shadow-lg ring-1 ring-gray-300 hover:ring-[#47be07] transition-all duration-300">
@@ -91,7 +88,6 @@ const Store = () => {
               </div>
             </div>
 
-            {/* Filtered Dropdown */}
             {dropdownOpen && searchQuery && filteredBooks.length > 0 && (
               <div
                 ref={dropdownRef}
@@ -114,7 +110,6 @@ const Store = () => {
           </div>
         </div>
 
-        {/* Books Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-6 sm:px-10 md:px-16 xl:px-32 py-16">
           {filteredBooks.length > 0 ? (
             filteredBooks.map((book, index) => (
@@ -124,6 +119,16 @@ const Store = () => {
                 whileHover={{ rotateY: 5, rotateX: 5, scale: 1.04 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
+                <div className="absolute top-2 left-2 z-10">
+                  <IconButton
+                    icon={<FaInfoCircle size={14} />}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      // Removed info modal logic
+                    }}
+                    label="Details"
+                  />
+                </div>
                 <div className="relative h-48 w-full overflow-hidden rounded-xl mb-4 flex items-center justify-center bg-[#f8fff3]">
                   <img
                     src={image}
@@ -138,21 +143,42 @@ const Store = () => {
                   <p className="text-sm text-gray-600 mb-3">
                     {book.description}
                   </p>
-                  <a
-                    href="#"
-                    className="bg-[#47be07] text-white text-sm font-semibold py-2 px-6 rounded-full hover:bg-[#3e9e0a] transition inline-block shadow-md hover:shadow-lg"
-                  >
-                    Buy Now
-                  </a>
+                  <div className="flex justify-center gap-4">
+                    <a
+                      href="#"
+                      className="bg-[#47be07] text-white text-sm font-semibold py-2 px-6 rounded-full hover:bg-[#3e9e0a] transition shadow-md hover:shadow-lg"
+                    >
+                      Buy Now
+                    </a>
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setSelectedBook(book);
+                        setShowModal(true);
+                      }}
+                      className="bg-white text-[#47be07] border border-[#47be07] text-sm font-semibold py-2 px-6 rounded-full hover:bg-[#f0fff0] transition shadow-md hover:shadow-lg"
+                    >
+                      Inquire
+                    </a>
+                  </div>
                 </div>
               </motion.div>
             ))
           ) : (
             <p className="text-center text-gray-600 text-sm col-span-full">
-              No results found.
+              No results found
             </p>
           )}
         </div>
+
+        {showModal && selectedBook && (
+          <InquireFormModal
+            bookTitle={selectedBook.title}
+            isOpen={showModal}
+            onClose={() => setShowModal(false)}
+          />
+        )}
       </div>
 
       <Footer />

@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { FaSearch, FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 import logo from "../../public/Artboard 1.png";
 import { Link } from "react-router-dom";
 import SearchHandler from "../components/SearchHandler";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("All Category");
+
   const [scrolled, setScrolled] = useState(false);
 
-  const categories = [
-    "All",
-    "Books",
-    "Non Math Books",
-    "Math Books",
-    "Softwares",
-    "Videos",
-    "Anything",
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -67,7 +57,9 @@ const Navbar = () => {
           <Link to="/softwares" className="hover:text-[#41aa09] transition">
             Software
           </Link>
-
+          <Link to="/softwares" onClick={() => setMenuOpen(false)}>
+            Apps
+          </Link>
           <Link to="/store" className="hover:text-[#41aa09] transition">
             Store
           </Link>
@@ -159,6 +151,9 @@ const Navbar = () => {
           </Link>
           <Link to="/softwares" onClick={() => setMenuOpen(false)}>
             Software
+          </Link>
+          <Link to="/softwares" onClick={() => setMenuOpen(false)}>
+            Apps
           </Link>
           <Link to="/store" onClick={() => setMenuOpen(false)}>
             Store
