@@ -18,6 +18,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import CategoryPage from "./pages/CategoryPage";
 import Contact from "./pages/Contact";
+import Videos from "./pages/Videos";
 
 function AppWrapper() {
   const location = useLocation();
@@ -44,6 +45,7 @@ function AppWrapper() {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/help" element={<Help />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/videos" element={<Videos />} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

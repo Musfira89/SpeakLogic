@@ -76,7 +76,8 @@ const Problems = () => {
             <span className="flex items-center text-gray-400">/</span>
 
             <span className="px-4 py-1.5 rounded-full backdrop-blur-sm bg-white/60 text-gray-800 shadow-sm border border-[#e5e5e5]">
-              Solution
+            Problem
+
             </span>
           </div>
         </motion.div>

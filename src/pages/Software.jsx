@@ -58,51 +58,25 @@ const Software = () => {
   return (
     <>
       <div className="min-h-screen bg-[#F9FAFB] text-gray-800 font-sans">
-        {/* Carousel */}
-        <div className="relative w-full overflow-hidden  py-16 sm:py-12 ">
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#3d960d]/50 to-transparent z-10 pointer-events-none" />
-
-          <motion.div
-            className="flex transition-transform duration-700 ease-in-out"
-            animate={{ x: `-${currentIndex * 100}%` }}
-          >
-            {images.map((img, idx) => (
-              <img
-                key={idx}
-                src={img}
-                alt={`slide-${idx}`}
-                className="w-full object-cover max-h-[520px]"
-              />
-            ))}
-          </motion.div>
-
-          {/* Dots */}
-          <div className="relative z-20 flex justify-center gap-2 mt-4">
-            {images.map((_, idx) => (
-              <span
-                key={idx}
-                className={`w-8 h-1 rounded ${
-                  idx === currentIndex ? "bg-[#47be07]" : "bg-[#cceac1]"
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-
         <motion.div
           variants={fadeInUp}
           initial="hidden"
           animate="visible"
-          className="relative isolate overflow-hidden px-6 sm:px-12 text-center"
+          className="relative isolate overflow-hidden pt-28 pb-12 px-6 sm:px-12 text-center"
         >
-          <h1 className="text-3xl md:text-5xl font-extrabold text-[#3c970b] tracking-wide drop-shadow-md md:mt-4">
+          {/* Decorative background blobs */}
+          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-white via-[#f5fdf2] to-white" />
+          <div className="absolute top-[-6rem] left-1/2 transform -translate-x-1/2 z-0 blur-3xl opacity-40 pointer-events-none">
+            <div className="w-[400px] h-[400px] bg-[#bdf4a4] rounded-full mix-blend-multiply"></div>
+          </div>
+
+          <h1 className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-[#3c970b] tracking-wide drop-shadow-md mt-4 md:mt-18">
             Software
           </h1>
 
           {/* Subtext */}
-          <p className="mt-4 md:max-w-[30rem] max-w-[20rem] mx-auto text-xs md:text-sm text-gray-600 mb-6  leading-relaxed">
-            Effective software begin with clear understanding and purposeful
+          <p className="mt-4 md:max-w-[30rem] max-w-[20rem] mx-auto text-xs md:text-sm text-gray-600 mb-6 ">
+            Effective softwares begin with clear understanding and purposeful
             action.
           </p>
 
@@ -136,6 +110,46 @@ const Software = () => {
             </span>
           </div>
         </motion.div>
+
+        {/* Carousel Section */}
+        <div className="relative mx-auto w-[90%] max-w-5xl overflow-hidden rounded-3xl shadow-2xl group perspective-1000">
+          <div className="absolute inset-0 bg-gradient-to-b from-[#3d960d]/30 to-transparent z-10 pointer-events-none rounded-3xl" />
+
+          <motion.div
+            className="flex transition-transform duration-1000 ease-in-out"
+            animate={{ x: `-${currentIndex * 100}%` }}
+          >
+            {images.map((img, idx) => (
+              <div
+                key={idx}
+                className="w-full shrink-0 transform transition-transform duration-700"
+                style={{
+                  transform: idx === currentIndex ? "scale(1)" : "scale(0.9)",
+                  transition: "transform 0.7s ease",
+                }}
+              >
+                <img
+                  src={img}
+                  alt={`slide-${idx}`}
+                  className="w-full object-cover max-h-[550px] rounded-3xl shadow-lg"
+                />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Dots */}
+        <div className="flex justify-center gap-2 mt-8 md:mb-22">
+          {images.map((_, idx) => (
+            <motion.span
+              key={idx}
+              className={`w-6 h-1 rounded-full transition-all duration-300 ${
+                idx === currentIndex ? "bg-[#47be07] scale-125" : "bg-[#cceac1]"
+              }`}
+              whileHover={{ scale: 1.2 }}
+            />
+          ))}
+        </div>
 
         {/* Instructions Section */}
         <section className="px-6 sm:px-6 md:px-10 xl:px-16 py-16 bg-[#F9FAFB] text-gray-800">
