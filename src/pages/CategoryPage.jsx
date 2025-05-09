@@ -3,17 +3,21 @@ import { useParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiSearch } from "react-icons/fi";
 import CardComponent from "../components/CardComponent";
+import VideoCardComponent from "./VideoCardComponent"; // ✅ New Import
 import BooksData from "../data/Books";
 import SoftwareData from "../data/Software";
+import { MathBooksData, NonMathBooksData } from "../data/Math";
+import VideosData from "../data/video";
 import AppsData from "../data/Apps";
 import Footer from "../components/Footer";
 
 const categoryMap = {
   books: { name: "Books", data: BooksData },
+  videos: { name: "Videos", data: VideosData },
   software: { name: "Software", data: SoftwareData },
   apps: { name: "Apps", data: AppsData },
-  // "math-books": { name: "Math Books", data: MathBooksData },
-  // "non-math-books": { name: "Non Math Books", data: NonMathBooksData },
+  "math-books": { name: "Math Books", data: MathBooksData },
+  "non-math-books": { name: "Non Math Books", data: NonMathBooksData },
 };
 
 const CategoryPage = () => {
@@ -69,9 +73,7 @@ const CategoryPage = () => {
   return (
     <>
       <div className="bg-white min-h-screen mb-32">
-        {/* Gradient Header */}
         <div className="bg-gradient-to-r from-[#47be07] to-[#3da204] text-white py-16 px-6 sm:px-16 relative">
-          {/* Back Button */}
           <button
             onClick={() => window.history.back()}
             className="absolute top-5 left-5 sm:top-6 sm:left-6 text-white flex items-center text-sm sm:text-base font-medium hover:underline z-20"
@@ -88,7 +90,6 @@ const CategoryPage = () => {
             {categoryInfo.name}
           </motion.h1>
 
-          {/* Search Bar */}
           <motion.div
             className="max-w-lg mx-auto relative z-10 mb-3.5"
             initial={{ opacity: 0, y: -10 }}
@@ -116,12 +117,11 @@ const CategoryPage = () => {
                 onBlur={() => setTimeout(() => setIsFocused(false), 150)}
                 onChange={(e) => {
                   setSearchQuery(e.target.value);
-                  setVisibleCount(booksPerPage); // Reset pagination on new search
+                  setVisibleCount(booksPerPage);
                 }}
               />
             </div>
 
-            {/* Autocomplete Suggestions */}
             <AnimatePresence>
               {isFocused && suggestions.length > 0 && (
                 <motion.ul
@@ -145,7 +145,6 @@ const CategoryPage = () => {
           </motion.div>
         </div>
 
-        {/* Cards Grid */}
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mx-6 sm:mx-16 mt-12"
           initial="hidden"
@@ -167,7 +166,11 @@ const CategoryPage = () => {
                 }}
                 transition={{ duration: 0.5 }}
               >
-                <CardComponent item={item} />
+                {category === "videos" ? (
+                  <VideoCardComponent item={item} />
+                ) : (
+                  <CardComponent item={item} />
+                )}
               </motion.div>
             ))
           ) : (
@@ -177,7 +180,6 @@ const CategoryPage = () => {
           )}
         </motion.div>
 
-        {/* Load More / Load Less */}
         {filteredData.length > booksPerPage && (
           <div className="flex justify-center mt-8 mb-10 gap-4 text-sm">
             {visibleCount < filteredData.length && (

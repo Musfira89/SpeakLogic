@@ -1,35 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Dialog } from "@headlessui/react";
+import { videosWithSound, videosWithoutSound } from "../data/videoData";
 import { FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 import Footer from "../components/Footer";
+import VideoModal from "../Modal/VideoModal"; // update path if needed
+import { FaPlayCircle } from "react-icons/fa";
 
-import img1 from "../assets/Problem/1.jpg";
-import img2 from "../assets/Problem/2.jpg";
-import img3 from "../assets/Problem/3.jpg";
-import img4 from "../assets/Problem/4.jpg";
+import img1 from "../assets/Video/image72.jpg";
 
-const videosWithSound = [
-  {
-    title: "Speak Logic Information Analysis for Microsoft Office V1.1",
-    src: "/videos/speak-logic.mp4",
-  },
-];
-
-const videosWithoutSound = [
-  {
-    title: "Visual Guide to Early Learning Activities",
-    src: "/videos/early-learning.mp4",
-  },
-];
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
 };
 
 const Videos = () => {
-  const images = [img1, img2, img3, img4];
+  const images = [img1];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedTab, setSelectedTab] = useState("withSound");
   const [isOpen, setIsOpen] = useState(false);
@@ -168,70 +154,57 @@ const Videos = () => {
                 <FaVolumeMute /> Without Sound
               </button>
             </div>
-            <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-  {(selectedTab === "withSound" ? videosWithSound : videosWithoutSound).map(
-    (video, index) => (
-      <div
-        key={index}
-        className="bg-white rounded-lg overflow-hidden shadow hover:shadow-lg transition cursor-pointer"
-        onClick={() => {
-          setSelectedVideo(video);
-          setIsOpen(true);
-        }}
-      >
-        <div className="aspect-video bg-gray-200">
-          <video
-            src={video.src}
-            className="w-full h-full object-cover"
-            muted
-            playsInline
-          />
-        </div>
-        <div className="p-3">
-          <h3 className="text-sm font-medium text-gray-800 text-center">
-            {video.title}
-          </h3>
-        </div>
-      </div>
-    )
-  )}
-</div>
-
-       
           </div>
         </motion.div>
+        {/* Modern Video Grid Section */}
+        <div className="px-6 sm:px-12 md:px-20 lg:px-32 xl:px-48 py-16 bg-[#f5fff7] min-h-screen">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 w-full max-w-7xl mx-auto">
+            {(selectedTab === "withSound"
+              ? videosWithSound
+              : videosWithoutSound
+            ).map((video, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ scale: 1.03 }}
+                className="rounded-2xl overflow-hidden bg-white shadow-[0_10px_25px_-5px_rgba(72,183,104,0.15)] transition-all duration-300 border border-[#e0f3dc] hover:shadow-green-300/30"
+              >
+                {/* Thumbnail with Play Button */}
+                <div className="relative">
+                  <img
+                    src={video.thumbnail} // Dynamically load thumbnail
+                    alt="Video thumbnail"
+                    className="w-full h-[220px] object-cover rounded-t-2xl" // Ensure it covers the space and crops if needed
+                  />
+                  <button
+                    onClick={() => {
+                      setSelectedVideo(video.src);
+                      setIsOpen(true);
+                    }}
+                    className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/50 transition duration-300"
+                  >
+                    <FaPlayCircle className="text-white text-5xl drop-shadow-md" />
+                  </button>
+                </div>
 
-        {/* Modal for Video */}
-        <Dialog
-          open={isOpen}
-          onClose={() => setIsOpen(false)}
-          className="fixed z-50 inset-0 overflow-y-auto"
-        >
-          <div className="flex items-center justify-center min-h-screen px-4">
-            <Dialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
-            <div className="relative bg-white rounded-lg overflow-hidden shadow-xl w-full max-w-2xl mx-auto">
-              <div className="p-4 border-b flex justify-between items-center">
-                <Dialog.Title className="text-lg font-bold text-[#3c970b]">
-                  {selectedVideo?.title}
-                </Dialog.Title>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="text-gray-500 hover:text-gray-700 text-xl"
-                >
-                  &times;
-                </button>
-              </div>
-              <div className="p-4">
-                <video
-                  src={selectedVideo?.src}
-                  controls
-                  autoPlay
-                  className="w-full rounded-lg shadow"
-                />
-              </div>
-            </div>
+                {/* Title */}
+                <div className="p-5">
+                  <h3 className="text-center text-sm font-semibold text-[#2a7b36]">
+                    {video.title}
+                  </h3>
+                </div>
+              </motion.div>
+            ))}
           </div>
-        </Dialog>
+        </div>
+
+        <VideoModal
+          videoSrc={selectedVideo}
+          isOpen={isOpen}
+          onClose={() => {
+            setIsOpen(false);
+            setSelectedVideo(null);
+          }}
+        />
       </div>
       <Footer />
     </>

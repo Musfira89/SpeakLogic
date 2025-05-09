@@ -6,34 +6,84 @@ import { motion } from "framer-motion";
 import image from "../assets/download.png";
 import Footer from "../components/Footer";
 import InquireFormModal from "../Modal/InquireFormModal";
+import InfoModal from "../Modal/InfoModal";
 
 const Store = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
-
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
+  const [showInfoModal, setShowInfoModal] = useState(false);
+  const [infoBook, setInfoBook] = useState(null);
 
   const books = [
     {
       title: "The Great Gatsby",
       description: "A novel by F. Scott Fitzgerald.",
+      author: "F. Scott Fitzgerald",
+      rating: 4.5,
+      image: image,
     },
-    { title: "To Kill a Mockingbird", description: "A novel by Harper Lee." },
-    { title: "1984", description: "A novel by George Orwell." },
+    {
+      title: "To Kill a Mockingbird",
+      description: "A novel by Harper Lee.",
+      author: "Harper Lee",
+      rating: 4.8,
+      image: image,
+    },
+    {
+      title: "1984",
+      description: "A novel by George Orwell.",
+      author: "George Orwell",
+      rating: 4.7,
+      image: image,
+    },
     {
       title: "The Catcher in the Rye",
       description: "A novel by J.D. Salinger.",
+      author: "J.D. Salinger",
+      rating: 4.1,
+      image: image,
     },
-    { title: "Moby Dick", description: "A novel by Herman Melville." },
-    { title: "Pride and Prejudice", description: "A novel by Jane Austen." },
-    { title: "War and Peace", description: "A novel by Leo Tolstoy." },
-    { title: "The Odyssey", description: "An epic poem by Homer." },
-    { title: "The Hobbit", description: "A novel by J.R.R. Tolkien." },
+    {
+      title: "Moby Dick",
+      description: "A novel by Herman Melville.",
+      author: "Herman Melville",
+      rating: 4.0,
+      image: image,
+    },
+    {
+      title: "Pride and Prejudice",
+      description: "A novel by Jane Austen.",
+      author: "Jane Austen",
+      rating: 4.6,
+      image: image,
+    },
+    {
+      title: "War and Peace",
+      description: "A novel by Leo Tolstoy.",
+      author: "Leo Tolstoy",
+      rating: 4.4,
+      image: image,
+    },
+    {
+      title: "The Odyssey",
+      description: "An epic poem by Homer.",
+      author: "Homer",
+      rating: 4.2,
+      image: image,
+    },
+    {
+      title: "The Hobbit",
+      description: "A novel by J.R.R. Tolkien.",
+      author: "J.R.R. Tolkien",
+      rating: 4.9,
+      image: image,
+    },
   ];
-
+  
   const filteredBooks = books.filter((book) =>
     book.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -124,7 +174,8 @@ const Store = () => {
                     icon={<FaInfoCircle size={14} />}
                     onClick={(e) => {
                       e.preventDefault();
-                      // Removed info modal logic
+                      setInfoBook(book);
+                      setShowInfoModal(true);
                     }}
                     label="Details"
                   />
@@ -177,6 +228,13 @@ const Store = () => {
             bookTitle={selectedBook.title}
             isOpen={showModal}
             onClose={() => setShowModal(false)}
+          />
+        )}
+        {showInfoModal && infoBook && (
+          <InfoModal
+            book={infoBook}
+            isOpen={showInfoModal}
+            onClose={() => setShowInfoModal(false)}
           />
         )}
       </div>

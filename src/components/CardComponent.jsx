@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Footer from "./Footer";
+
 
 const CardComponent = ({ item, index }) => {
   const [clicked, setClicked] = useState(false);

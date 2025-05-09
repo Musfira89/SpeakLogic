@@ -51,22 +51,22 @@ const Features = () => {
         {/* Top-Right Action Buttons */}
         <div className="absolute top-4 right-4 flex flex-col gap-2 z-10">
           <IconButton
-            icon={<FaDownload size={14} />}
+            icon={<FaDownload size={16} />}
             onClick={() => openModal("download", index)}
             label="Download"
           />
           <IconButton
-            icon={<FaPrint size={14} />}
+            icon={<FaPrint size={16} />}
             onClick={() => openModal("print", index)}
             label="Print"
           />
           <IconButton
-            icon={<FaInfoCircle size={14} />}
+            icon={<FaInfoCircle size={16} />}
             onClick={() => openModal("info", index)}
             label="Details"
           />
           <IconButton
-            icon={<FaChevronDown size={14} />}
+            icon={<FaChevronDown size={17} />}
             onClick={() => openModal("type", index)}
             label="More"
           />
@@ -151,7 +151,7 @@ const IconButton = ({ icon, onClick, label }) => (
   <button
     onClick={onClick}
     aria-label={label}
-    className="w-12 h-12 rounded-full bg-[#47be07] text-white flex items-center justify-center hover:bg-[#3aa506] transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#47be07]"
+    className="w-11 h-11 rounded-full bg-[#47be07] text-white flex items-center justify-center hover:bg-[#3aa506] transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#47be07]"
     title={label}
   >
     {icon}
