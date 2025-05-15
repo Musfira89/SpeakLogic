@@ -8,6 +8,8 @@ import img2 from "../assets/Problem/2.jpg";
 import img3 from "../assets/Problem/3.jpg";
 import img4 from "../assets/Problem/4.jpg";
 
+import solution1 from "../assets/solution1.png";
+
 const Solutions = () => {
   const images = [img1, img2, img3, img4];
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -106,7 +108,7 @@ const Solutions = () => {
         <section className="relative max-w-6xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
           <div className="absolute top-28 left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-[#47be07] to-[#3e9e0a] opacity-80 rounded-full h-[85%]"></div>
 
-          <div className="relative z-10 flex flex-col gap-12 md:gap-10">
+          <div className="relative z-10 flex flex-col gap-20 md:gap-28">
             {[
               {
                 title: "The Solution Process",
@@ -115,6 +117,7 @@ const Solutions = () => {
                 btn: "Learn More",
                 link: "/downloads",
                 icon: <FaBook size={24} />,
+                imageOn: "right",
               },
               {
                 title: "Learning the Principle",
@@ -123,6 +126,7 @@ const Solutions = () => {
                 btn: "Download Resources",
                 link: "/downloads",
                 icon: <FaBrain size={24} />,
+                imageOn: "left",
               },
               {
                 title: "Software & Guidelines",
@@ -131,16 +135,21 @@ const Solutions = () => {
                 btn: "Get the Software",
                 link: "/downloads",
                 icon: <FaLaptop size={24} />,
+                imageOn: "right",
               },
             ].map((item, index) => {
-              const isLeft = index % 2 === 0;
-              return (
-                <div
-                  key={index}
-                  className={`relative flex items-center w-full md:w-1/2 ${
-                    isLeft ? "self-start pr-10" : "self-end pl-10"
-                  }`}
-                >
+              const imageComponent = (
+                <div className="hidden md:flex w-1/2 justify-center items-center">
+                  <img
+                    src={solution1}
+                    alt="Solution Illustration"
+                    className="w-full max-w-sm object-contain"
+                  />
+                </div>
+              );
+
+              const contentComponent = (
+                <div className="w-full md:w-1/2 p-6">
                   <div className="bg-white border border-gray-200 hover:border-[#47be07] transition duration-300 p-8 rounded-2xl shadow-lg w-full text-left transform hover:shadow-xl">
                     <div className="flex items-center space-x-3 mb-4">
                       <div className="w-14 h-14 flex items-center justify-center rounded-full bg-[#e8f7d4] text-[#41aa09] hover:bg-[#41aa09] hover:text-white shadow-lg transition-all duration-300 shrink-0">
@@ -160,6 +169,25 @@ const Solutions = () => {
                       {item.btn}
                     </Link>
                   </div>
+                </div>
+              );
+
+              return (
+                <div
+                  key={index}
+                  className="flex flex-col md:flex-row items-center gap-4"
+                >
+                  {item.imageOn === "left" ? (
+                    <>
+                      {imageComponent}
+                      {contentComponent}
+                    </>
+                  ) : (
+                    <>
+                      {contentComponent}
+                      {imageComponent}
+                    </>
+                  )}
                 </div>
               );
             })}

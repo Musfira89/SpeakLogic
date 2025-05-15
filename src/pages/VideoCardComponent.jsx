@@ -25,7 +25,9 @@ const VideoCardComponent = ({ item }) => {
         </div>
 
         <div className="p-8">
-          <h2 className="text-sm font-semibold text-gray-700 mb-1">{item.title}</h2>
+          <h2 className="text-sm font-semibold text-gray-700 mb-1">
+            {item.title}
+          </h2>
         </div>
       </motion.div>
 
@@ -51,7 +53,6 @@ const VideoCardComponent = ({ item }) => {
                 autoPlay
                 className="w-full h-auto rounded-t-2xl"
               />
-            
             </motion.div>
           </motion.div>
         )}
